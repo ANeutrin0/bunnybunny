@@ -218,7 +218,7 @@ h1, h2, h3, p { margin: 0; }
 #lesson-next { flex: 0 0 auto; min-height: 44px; padding: 9px 14px; border-radius: 14px; font-size: 12px; }
 body[data-tutorial="true"] #objective { display: none; }
 body[data-tutorial="true"] .play-feedback .pair-progress { display: none; }
-body[data-tutorial="true"] .board[data-lesson="0"] { max-width: 230px; }
+body[data-tutorial="true"] .board[data-lesson="0"] { max-width: 300px; }
 body[data-tutorial="true"] .board[data-lesson="1"], body[data-tutorial="true"] .board[data-lesson="2"] { max-width: 340px; }
 body[data-tutorial="true"] .cell.lesson-target::before { content: ""; position: absolute; inset: 6px; z-index: 6; border: 2px solid #bcad78; border-radius: 9px; background: #fff8cb16; pointer-events: none; }
 body[data-tutorial="true"] .cell.lesson-fixed { opacity: 1; cursor: default; }
@@ -967,7 +967,7 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 
-/* One small rule before the first tap; the board teaches the rest. */
+/* Explicit examples separate regional counts from neighboring partners. */
 .game-dialog.lesson-intro-dialog { width: min(calc(100% - 28px), 410px); max-width: 410px; max-height: calc(100dvh - 28px); padding: 22px 24px 16px; border-color: #dedfc9; border-radius: 26px; background: #fffaf0; }
 .lesson-intro-host { display: flex; align-items: center; gap: 10px; min-width: 0; }
 #lesson-intro-owl { display: block; flex: 0 0 45px; width: 45px; height: 45px; }
@@ -983,6 +983,26 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
 .lesson-intro-actions { display: flex; flex-direction: column; align-items: stretch; gap: 6px; margin-top: 17px; }
 .lesson-intro-actions .primary-button { min-height: 46px; font-size: 14px; }
 .lesson-intro-actions .text-button { min-height: 38px; padding: 8px; color: #899078; font-size: 11px; }
+.lesson-intro-secondary { display: flex; justify-content: center; gap: 18px; }
+.lesson-intro-art > .rule-example-art { height: auto; max-height: none; }
+.game-dialog.help-dialog { width: min(calc(100% - 28px), 530px); max-width: 530px; padding: 25px 22px 18px; }
+.help-dialog[open] { display: flex; flex-direction: column; }
+.help-dialog > .eyebrow, .help-dialog > h2, .help-dialog > .primary-button { flex-shrink: 0; }
+.help-dialog > h2 { margin: 9px 24px 5px 0; font-size: 22px; color: #61764f; }
+.help-dialog .help-content { min-height: 0; margin: 9px 0 15px; padding-right: 6px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #cbd5bb transparent; color: #657456; }
+.help-dialog .help-rule { padding: 9px 0; }
+.help-dialog .help-rule h3, .rules-crossing h3 { color: #5b704c; font-size: 14px; line-height: 1.65; }
+.help-dialog .help-rule p, .help-dialog .rules-crossing p { font-size: 12px; line-height: 1.8; }
+.help-dialog .rules-goal { margin: 0 0 4px; color: #61734f; font-weight: 700; }
+.rules-crossing { margin-top: 14px; padding: 12px; border: 1px solid #e0e4d0; border-radius: 17px; background: #f1f4e9; }
+.rules-crossing > p { margin: 5px 0; }
+.rules-complete-art { max-width: 285px; margin: 6px auto; }
+.rule-example-art { display: block; width: 100%; height: auto; }
+.rules-examples { margin: 14px 0; border-bottom: 1px solid #e1e6d5; padding-bottom: 10px; }
+.rules-examples > summary { padding: 7px 0; cursor: pointer; color: #697d57; font-weight: 700; }
+.rules-examples > svg { max-width: 310px; margin: 8px auto; }
+.help-content .rules-controls { margin-bottom: 0; font-size: 11px; line-height: 1.8; }
+.rules-controls > strong { display: block; margin-bottom: 4px; color: #657951; font-size: 12px; }
 @media (max-width: 380px) {
   .game-dialog.lesson-intro-dialog { padding: 18px 18px 12px; }
   .lesson-intro-dialog h2 { margin-top: 13px; font-size: 21px; }
@@ -997,10 +1017,12 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
   .lesson-intro-dialog h2 { grid-column: 2; grid-row: 2; margin: 4px 0 0; font-size: 20px; }
   .lesson-intro-copy { grid-column: 2; grid-row: 3; font-size: 12px; line-height: 1.7; }
   .lesson-intro-art { grid-column: 1; grid-row: 2 / 5; display: flex; align-items: center; margin: 4px 0 0; }
+  .lesson-intro-art > .rule-example-art { max-height: 180px; }
   .lesson-intro-prompt { grid-column: 2; grid-row: 4; font-size: 11px; line-height: 1.7; }
   .lesson-intro-actions { grid-column: 1 / -1; grid-row: 5; flex-direction: row; align-items: center; gap: 12px; margin-top: 5px; }
   .lesson-intro-actions .primary-button { flex: 1; min-height: 42px; padding: 10px 18px; font-size: 13px; }
   .lesson-intro-actions .text-button { flex: 0 0 auto; min-height: 42px; }
+  .lesson-intro-secondary { flex-shrink: 0; gap: 8px; }
 }
 </style>
   <style>/* The wardrobe is a room and a toy cabinet, with one inventory open at a time. */
@@ -1507,7 +1529,7 @@ body[data-vip="true"] .game-shell { flex: 1 1 0; min-height: 0; height: auto; }
         <button id="clear-board" class="tool-button" type="button" aria-label="清空本关的小兔和留空标记"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m13.6 3.8 6.6 6.6a1.7 1.7 0 0 1 0 2.4l-6.9 6.9H8.8l-5-5a1.7 1.7 0 0 1 0-2.4l7.4-8.5a1.7 1.7 0 0 1 2.4 0Z"/><path d="m7.3 8.8 8 8M12.8 19.7H21"/></svg></span><span id="clear-board-label">清空</span></button>
         <button id="hint-button" class="tool-button hint-button" type="button" aria-label="找舞会管家咕咕帮忙"><span class="icon" aria-hidden="true">✦</span><span>找管家</span></button>
       </div>
-      <section id="lesson-finish" class="lesson-finish" hidden aria-live="polite"><p id="lesson-success">两位小兔有伴啦。</p><button id="lesson-next" class="primary-button" type="button">下一步 →</button></section>
+      <section id="lesson-finish" class="lesson-finish" hidden aria-live="polite"><p id="lesson-success">每区两只，不用填满。</p><button id="lesson-next" class="primary-button" type="button">继续</button></section>
       <section id="guest-cast" class="guest-cast" aria-label="今晚的舞会来客">
         <div class="guest-cast-full"><h3>今晚的舞会来客</h3><div id="guest-cast-list" class="guest-cast-list"></div><p class="guest-cast-note">花色和角色不影响规则</p></div>
         <button id="guest-cast-open" class="guest-cast-open" type="button" aria-label="查看今晚的舞会来客" aria-haspopup="dialog" aria-controls="guest-cast-dialog"><span id="guest-cast-preview" class="guest-cast-preview" aria-hidden="true"></span><span>今晚的来客</span><span class="cast-open-arrow" aria-hidden="true">›</span></button>
@@ -1572,9 +1594,9 @@ body[data-vip="true"] .game-shell { flex: 1 1 0; min-height: 0; height: auto; }
     <p id="lesson-intro-copy" class="lesson-intro-copy"></p>
     <div id="lesson-intro-art" class="lesson-intro-art" aria-hidden="true"></div>
     <p id="lesson-intro-prompt" class="lesson-intro-prompt"></p>
-    <div class="lesson-intro-actions"><button id="lesson-intro-start" class="primary-button" type="button">试试看 →</button><button id="lesson-intro-home" class="text-button" type="button">先回首页</button></div>
+    <div class="lesson-intro-actions"><button id="lesson-intro-start" class="primary-button" type="button">试试看 →</button><div class="lesson-intro-secondary"><button id="lesson-intro-prev" class="text-button" type="button" hidden>上一页</button><button id="lesson-intro-home" class="text-button" type="button">先回首页</button></div></div>
   </dialog>
-  <dialog id="help-dialog" class="game-dialog help-dialog" aria-labelledby="help-title"><button id="help-close" class="dialog-close icon-button" type="button" aria-label="关闭玩法"><span class="icon" aria-hidden="true">×</span></button><p class="eyebrow">EVERY BUNNY NEEDS A BUDDY</p><h2 id="help-title">两位客人，一支舞。</h2><div id="help-content" class="help-content"></div><button id="help-start" class="primary-button" type="button">明白啦</button></dialog>
+  <dialog id="help-dialog" class="game-dialog help-dialog" aria-labelledby="help-title"><button id="help-close" class="dialog-close icon-button" type="button" aria-label="关闭玩法"><span class="icon" aria-hidden="true">×</span></button><p class="eyebrow">EVERY BUNNY NEEDS A BUDDY</p><h2 id="help-title">两位客人，一支舞。</h2><div id="help-content" class="help-content" role="region" aria-label="完整玩法说明" tabindex="0"></div><button id="help-start" class="primary-button" type="button">明白啦</button></dialog>
   <dialog id="hint-dialog" class="game-dialog hint-dialog" data-stage="0" aria-labelledby="hint-title" aria-describedby="hint-stage-label">
     <button id="hint-close" class="dialog-close icon-button" type="button" aria-label="关闭提示"><span class="icon" aria-hidden="true">×</span></button>
     <div class="hint-host-header"><span id="hint-host-art" class="hint-host-art" aria-hidden="true"></span><div><p class="hint-host-label">舞会管家</p><h2 id="hint-title">咕咕</h2></div></div>
@@ -5393,19 +5415,23 @@ function hostOwlSvg() {
 }
 
 /* ./tutorial.mjs */
+const TUTORIAL_RULES_VERSION = 2;
 const LESSONS = [
-  {id: 'two-guests', title: '每区恰好两只', regions: ['AA'], initialDancers: [], initialMarks: []},
+  {id: 'two-guests', title: '每区恰好两只', regions: ['AAA'], initialDancers: [], initialMarks: []},
   {id: 'empty-notes', title: '给空位画个 ×', regions: ['AAA', 'AAA'], initialDancers: ['0,0', '0,1'], initialMarks: []},
   {id: 'across-garden', title: '隔壁也能作伴', regions: ['AAA', 'BBB'], initialDancers: ['0,0', '0,2'], initialMarks: []}
 ];
 
-const TUTORIAL_QUOTA_RULE = {title: '每区恰好两只', copy: '分区线围起的是一片区域，每区邀请两只小兔。'};
-const TUTORIAL_NOTE_RULE = {title: '× 表示这里留空', copy: '确定不放小兔的位置，可以画个 × 帮自己记住。'};
-const TUTORIAL_PARTNER_RULE = {title: '每只只有一位舞伴', copy: '每只小兔上下左右只能挨着一位舞伴；斜角碰到没关系。'};
-const TUTORIAL_CROSS_RULE = {title: '舞伴可以跨区', copy: '分区线不会隔开舞伴；同区的两只也不一定是一对。'};
+const TUTORIAL_QUOTA_RULE = {title: '每区恰好两只', copy: '粗分区线围起一个区域。不论区域大小，每区恰好两只小兔，其余格子留空。'};
+const TUTORIAL_NOTE_RULE = {title: '× 是可选的空位笔记', copy: '× 只表示这里留空，帮助自己记住。空格不用全部画 ×，也能通关。'};
+const TUTORIAL_PARTNER_RULE = {title: '每只恰好一位舞伴', copy: '每只小兔上下左右必须恰好挨着一只：没有会落单，挨着两只或更多也不行。'};
+const TUTORIAL_CROSS_RULE = {title: '数量与舞伴分开看', copy: '每区的两只不一定互相作伴。只要上下左右挨着，隔着分区线也能成为一对。'};
+const TUTORIAL_DIAGONAL_RULE = {title: '斜角不算舞伴', copy: '斜对角的小兔不能配成一对。已经成对的两组小兔，可以斜角接触。'};
 
 function tutorialPlan(lesson) {
-  if (lesson.id === 'two-guests') return {dancers: ['0,0', '0,1'], marks: []};
+  // The first step teaches only the count: all three cells remain available,
+  // including a third guest so the player can see and correct an overfull area.
+  if (lesson.id === 'two-guests') return {dancers: ['0,0', '0,1', '0,2'], marks: []};
   if (lesson.id === 'empty-notes') return {dancers: ['0,0', '0,1'], marks: ['0,2', '1,0', '1,1', '1,2']};
   if (lesson.id === 'across-garden') return {dancers: ['0,0', '0,2', '1,0', '1,2'], marks: ['0,1', '1,1']};
   throw new RangeError(`Unknown tutorial lesson: ${lesson.id}`);
@@ -5427,8 +5453,8 @@ function lessonInitial(lesson, saved = {}) {
     .filter(key => valid.has(key) && allowedDancers.has(key) && !fixedMarks.has(key))]);
   const marks = new Set([...fixedMarks, ...tutorialArray(saved?.marks)
     .filter(key => valid.has(key) && allowedMarks.has(key) && !dancers.has(key))]);
-  // Any subset of correct target cells can be resumed. Missing prerequisites
-  // become the next step, including after a player undoes an earlier action.
+  // Preserve any allowed practice state, including an overfull first area.
+  // The same coordinate keys keep older two-cell practice saves intact.
   return {dancers: keys.filter(key => dancers.has(key)), marks: keys.filter(key => marks.has(key))};
 }
 
@@ -5439,60 +5465,56 @@ function lessonState(lesson, dancers = [], marks = []) {
   const initial = lessonInitial(lesson, {dancers, marks});
   const placed = new Set(initial.dancers), noted = new Set(initial.marks), plan = tutorialPlan(lesson);
   if (lesson.id === 'two-guests') {
-    const remaining = plan.dancers.filter(key => !placed.has(key)), current = 2 - remaining.length;
-    if (!remaining.length) return tutorialView(true, 'complete', '两只小兔都来啦，这个区域刚刚好。', [], null, 2, 2, [TUTORIAL_QUOTA_RULE]);
+    const remaining = plan.dancers.filter(key => !placed.has(key)), current = placed.size;
+    if (current > 2) return tutorialView(false, 'too-many-guests', '这一区来了三只，多了一只。每区恰好两只，不是把格子填满；点任意一只小兔，把它请回去吧。', [...placed], 'place', current, 2, [TUTORIAL_QUOTA_RULE]);
+    if (current === 2) return tutorialView(true, 'complete', '这一区正好两只，数量够啦；剩下的格子留空。这一步只看数量，稍后再学怎么找舞伴。', [], null, 2, 2, [TUTORIAL_QUOTA_RULE]);
     return tutorialView(false, 'invite-guests', current
-      ? '还有一位在等呢。点一下亮着的空位，把它也请进来吧。'
-      : '我是咕咕，舞会的管家。两位客人等着进场呢，点一下亮着的空位，帮我把它们请进来。', remaining, 'place', current, 2, [TUTORIAL_QUOTA_RULE]);
+      ? '每区恰好两只，现在只有一只，还少一位。再点一个空格，请第二只进来吧。'
+      : '粗边框围起一个区域，不论有几格，都恰好请两只。这一区有三个空格，先点一个，把小兔请进来吧。', remaining, 'place', current, 2, [TUTORIAL_QUOTA_RULE]);
   }
   if (lesson.id === 'empty-notes') {
-    const remaining = plan.marks.filter(key => !noted.has(key)), current = 4 - remaining.length;
+    const remaining = plan.marks.filter(key => !noted.has(key)), current = Math.min(1, noted.size);
     const rules = [TUTORIAL_QUOTA_RULE, TUTORIAL_NOTE_RULE];
-    // The board already satisfies Norinori before the first note. This lesson
-    // deliberately completes only when the player has practised all four ×s.
-    if (!remaining.length) return tutorialView(true, 'complete', '空位都记好啦。正式关卡里，× 帮你记住空位，不必画满。', [], null, 4, 4, rules);
-    return tutorialView(false, 'mark-empty', current
-      ? `还有 ${remaining.length} 个空位没记好。给亮着的地方画 ×，我就知道这里不再请客人了。`
-      : '这一区的两位客人都到了。选「留空」，给亮着的空位画 ×，记住这里不再加人。', remaining, 'mark', current, 4, rules);
+    // A single mark demonstrates the tool. More notes stay optional, just as
+    // they are in the real puzzles, and every player note can still be removed.
+    if (current) return tutorialView(true, 'complete', '这个 × 就是“这里留空”的小笔记。不用画满也能通关；你可以继续练习，也可以去认识舞伴啦。', [], null, 1, 1, rules);
+    return tutorialView(false, 'mark-empty', '这一区已有两只，其他格子都要留空。× 只是帮你记住空位：选「留空」，给任意一个空格画 × 试试。', remaining, 'mark', 0, 1, rules);
   }
 
   const endpoints = ['1,0', '1,2'], guests = endpoints.filter(key => placed.has(key));
-  const current = guests.length + plan.marks.filter(key => noted.has(key)).length;
-  if (!noted.has('0,1')) {
-    return tutorialView(false, 'mark-a', 'A区的两张请柬都对上人了。选「留空」，给中间画 ×，这里不再加人。', ['0,1'], 'mark', current, 4, [TUTORIAL_QUOTA_RULE, TUTORIAL_NOTE_RULE]);
-  }
+  const current = guests.length;
+  const rules = [TUTORIAL_QUOTA_RULE, TUTORIAL_PARTNER_RULE, TUTORIAL_CROSS_RULE, TUTORIAL_DIAGONAL_RULE, TUTORIAL_NOTE_RULE];
   if (!guests.length) {
-    return tutorialView(false, 'first-partner', '上面的小兔还在等舞伴呢。选「邀请」，在任意一只的正下方请来一只小兔。', endpoints, 'place', current, 4, [TUTORIAL_QUOTA_RULE, TUTORIAL_PARTNER_RULE]);
-  }
-  const rules = [TUTORIAL_QUOTA_RULE, TUTORIAL_PARTNER_RULE, TUTORIAL_CROSS_RULE];
-  if (!noted.has('1,1')) {
-    return tutorialView(false, 'mark-b', '隔着分区线也能作伴。B区中间若再来一只，就会挨上已有舞伴的小兔；选「留空」，给那里画 ×。', ['1,1'], 'mark', current, 4, rules);
+    return tutorialView(false, 'first-partner', 'A 区已有两只，数量够了，但它们还没有舞伴。每只上下左右必须恰好挨着一只，不能落单。选「邀请」，在任意一只的正下方请来舞伴吧。', endpoints, 'place', 0, 2, rules);
   }
   if (guests.length < 2) {
-    return tutorialView(false, 'last-partner', '另一只还在等呢。选「邀请」，在它的正下方请来最后一只小兔吧。', endpoints.filter(key => !placed.has(key)), 'place', current, 4, rules);
+    return tutorialView(false, 'last-partner', '隔着分区线，也能成为一对！每区两只看的是数量，舞伴看的是上下左右恰好挨着一只。另一只还落单，去它正下方请来舞伴吧。', endpoints.filter(key => !placed.has(key)), 'place', 1, 2, rules);
   }
   const state = evaluate(lesson, initial.dancers);
-  const complete = state.solved && state.pairs.length === 2 && plan.marks.every(key => noted.has(key));
+  const complete = state.solved && state.pairs.length === 2;
   return tutorialView(complete, complete ? 'complete' : 'last-partner', complete
-    ? '两对小兔都找到彼此啦。每区两只，舞伴也可以来自隔壁区域。'
-    : '我们再看看小兔身边，让每只都只有一位相邻的舞伴。', [], null, current, 4, rules);
+    ? '两件事都对啦：每区恰好两只，每只上下左右恰好挨着一位舞伴。同区的两只不必互相配对，× 也不必画满。'
+    : '再分别看两件事：每区恰好两只；每只上下左右必须恰好挨着一只，没有或多了都不行。', [], null, current, 2, rules);
 }
 
-function tutorialWrongMove(lesson, view, key, action) {
-  if (lesson.id === 'two-guests') return '我们先请小兔进来，让这个区域刚好有两只。';
-  if (lesson.id === 'empty-notes') return '两只小兔已经到齐啦。这一步选「留空」，给空位画 ×。';
-  if (view.phase === 'mark-a') return 'A区的两位已经到了，中间就不再请客人啦。选「留空」，画一个 ×。';
-  if (key === '0,1' && action === 'place') return 'A 区的两只小兔到齐了，中间的 × 先留着吧。';
-  if (view.phase === 'first-partner') return '先选「邀请」吧，把小兔请到一位等候客人的正下方。';
-  if (view.phase === 'mark-b') return '我们先给 B 区中间画 ×，让这对小兔身边留点空位。';
-  if (view.phase === 'last-partner') return '最后一只的位置亮着呢，选「邀请」，把它也请进来吧。';
-  return '这段练习完成啦，我们可以去下一段了。';
+function tutorialWrongMove(lesson, placed, key, action) {
+  if (lesson.id === 'two-guests') return '这一步只学每区恰好两只。选「邀请」请小兔进来，再点小兔可以请它回去；下一步再学画 ×。';
+  if (lesson.id === 'empty-notes') return '这一区已经有两只，再来就多了。选「留空」给空位画 ×；它只是笔记，不必画满。';
+  if (action === 'mark' && ['1,0', '1,2'].includes(key)) return '这里要留给上方小兔的舞伴，不能记为空位。舞伴要上下左右挨着，不能只靠斜角。';
+  if (action === 'place' && key === '0,1') return 'A 区已经有两只，再放就变成三只了。区域只管数量；这两只的舞伴可以到隔壁 B 区找。';
+  if (action === 'place' && key === '1,1') {
+    const hasPartner = placed.has('1,0') || placed.has('1,2');
+    return hasPartner
+      ? '旁边的小兔已经和上方配成一对了。这里再来一只，它就会挨着两只；每只必须恰好只有一位舞伴。'
+      : '这里和上面的小兔只是斜角相对，不能配成舞伴。舞伴必须在上、下、左、右；请到一只小兔的正下方试试。';
+  }
+  return '每区恰好两只，每只上下左右恰好挨着一只。选「邀请」请舞伴；中间的空位也可以用 × 记下来。';
 }
 function lessonChange(lesson, dancers = [], marks = [], key, action = 'place') {
   const initial = lessonInitial(lesson, {dancers, marks});
   const placed = new Set(initial.dancers), noted = new Set(initial.marks);
   const fail = message => ({ok: false, dancers: [...initial.dancers], marks: [...initial.marks], message});
-  if (!tutorialKeys(lesson).includes(key)) return fail('我们先在亮着的格子里试试吧。');
+  if (!tutorialKeys(lesson).includes(key)) return fail('我们先在这块小舞池里试试吧。');
   if (!['place', 'mark'].includes(action)) return fail('选「邀请」请来小兔，或选「留空」画个 ×。');
   if (tutorialArray(lesson.initialDancers).includes(key)) return fail('这只小兔已经到场啦，先让它安心待在这里吧。');
   if (tutorialArray(lesson.initialMarks).includes(key)) return fail('这个 × 是练习留给你的提示，先保留着吧。');
@@ -5502,8 +5524,8 @@ function lessonChange(lesson, dancers = [], marks = [], key, action = 'place') {
   if (undoGuest) placed.delete(key);
   else if (undoNote) noted.delete(key);
   else {
-    const view = lessonState(lesson, initial.dancers, initial.marks);
-    if (action !== view.action || !view.focusCells.includes(key)) return fail(tutorialWrongMove(lesson, view, key, action));
+    const plan = tutorialPlan(lesson), allowed = action === 'place' ? plan.dancers : plan.marks;
+    if (!allowed.includes(key)) return fail(tutorialWrongMove(lesson, placed, key, action));
     if (action === 'place') placed.add(key);
     else noted.add(key);
   }
@@ -5511,61 +5533,148 @@ function lessonChange(lesson, dancers = [], marks = [], key, action = 'place') {
   return {ok: true, ...next, message: lessonState(lesson, next.dancers, next.marks).message};
 }
 
-/* ./lesson-intro.mjs */
+/* ./rule-examples.mjs */
 
 
 
-// Prefix these helpers because the single-file build shares one module scope.
-function lessonIntroRabbit(wardrobe, seed, x, y, size) {
+// Unique helper names keep the standalone build's shared module scope safe.
+function ruleExampleRabbit(wardrobe,seed,x,y,size) {
   const variant=wardrobeVariant(wardrobe,seed);
   return animalSvg(variant,{outfit:wardrobeOutfit(wardrobe,variant)})
-    .replace('<svg',`<svg x="${x+size*.18}" y="${y+size*.06}" width="${size*.64}" height="${size*.84}"`);
+    .replace('<svg',`<svg x="${x+size*.13}" y="${y+size*.035}" width="${size*.74}" height="${size*.91}"`);
 }
 
-function lessonIntroGrid(wardrobe, kind) {
-  const simple=kind==='two-guests',cross=kind==='across-garden';
-  const size=simple?92:64,cols=simple?2:3,rows=simple?1:2;
-  const left=(300-cols*size)/2,top=simple?28:8;
-  const guests=simple?[[0,0,0],[0,1,1]]:cross?[[0,0,0],[0,2,1],[1,0,1],[1,2,0]]:[[0,0,0],[0,1,1]];
-  const notes=simple?[]:cross?[[0,1],[1,1]]:[[0,2],[1,0],[1,1],[1,2]];
-  const width=cols*size,height=rows*size;
-  let art=`<rect x="${left-5}" y="${top-5}" width="${width+10}" height="${height+10}" rx="17" fill="#d7ddc7" opacity=".45"/>`;
-  art+=`<rect x="${left}" y="${top}" width="${width}" height="${height}" rx="12" fill="#e4ead4" stroke="#b8c4a2" stroke-width="2"/>`;
-  if(cross)art+=`<path d="M${left} ${top+size}H${left+width}V${top+height-12}q0 12-12 12H${left+12}q-12 0-12-12Z" fill="#e8dfec"/>`;
-  for(let col=1;col<cols;col++)art+=`<path d="M${left+col*size} ${top+2}V${top+height-2}" stroke="#b6c2a1" stroke-opacity=".48" stroke-width="1.5"/>`;
-  if(rows>1)art+=`<path d="M${left+2} ${top+size}H${left+width-2}" stroke="${cross?'#879474':'#b6c2a1'}" stroke-opacity="${cross?1:.48}" stroke-width="${cross?3:1.5}"/>`;
-  if(cross){
-    for(const col of [0,2])art+=`<rect x="${left+col*size+8}" y="${top+5}" width="${size-16}" height="${height-10}" rx="23" fill="#fffdf2" fill-opacity=".43" stroke="#fffdf2" stroke-width="2"/>`;
-    art+=`<path d="M${left+2} ${top+size}H${left+width-2}" stroke="#879474" stroke-opacity=".7" stroke-width="2"/>`;
-    art+=`<g fill="#7e8c6a" font-family="system-ui,sans-serif" font-size="11" font-weight="700" text-anchor="middle"><text x="${left-17}" y="${top+size*.57}">A</text><text x="${left-17}" y="${top+size*1.57}">B</text></g>`;
-  }
-  for(const [row,col,seed]of guests)art+=lessonIntroRabbit(wardrobe,seed,left+col*size,top+row*size,size);
-  for(const [row,col]of notes){
-    const x=left+(col+.5)*size,y=top+(row+.5)*size;
-    art+=`<path d="M${x-6} ${y-6}l12 12m0-12l-12 12" fill="none" stroke="#99a285" stroke-width="3" stroke-linecap="round"/>`;
-  }
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 148" aria-hidden="true" focusable="false" class="lesson-intro-board">${art}</svg>`;
+function ruleExampleText(x,y,label,{size=13,color='#705d4d',weight=700,anchor='middle'}={}) {
+  return `<text x="${x}" y="${y}" text-anchor="${anchor}" fill="${color}" font-size="${size}" font-weight="${weight}" font-family="system-ui,-apple-system,'Segoe UI',sans-serif">${label}</text>`;
 }
-function lessonIntroContent(lesson, wardrobe) {
-  if(lesson.id==='two-guests')return {
-    title:'这一小片，只请两只',
-    copy:'同一种底色、被分区线围起来的，就是一个区域。每区恰好放两只小兔。',
-    prompt:'点一下亮着的空格，把两位客人请进来吧。',
-    art:lessonIntroGrid(wardrobe,lesson.id)
-  };
-  if(lesson.id==='empty-notes')return {
-    title:'空着的地方，记个 ×',
-    copy:'这一区已经有两只小兔啦。其他格子可以画 ×，提醒自己这里留空。',
-    prompt:'先点「留空」，再点亮着的空格。正式舞会里，× 不必画满。',
-    art:lessonIntroGrid(wardrobe,lesson.id)
-  };
-  if(lesson.id==='across-garden')return {
-    title:'每只小兔，都有一位舞伴',
-    copy:'上下左右，只能挨着一位舞伴。隔着分区线也能作伴，斜角碰到没关系。',
-    prompt:'先给 A 区的空位画 ×，再请隔壁的小兔来作伴。',
-    art:lessonIntroGrid(wardrobe,lesson.id)
-  };
+
+function ruleExampleNote(x,y,size) {
+  const arm=size*.115;
+  return `<path d="M${x-arm} ${y-arm}l${arm*2} ${arm*2}m0-${arm*2}l-${arm*2} ${arm*2}" fill="none" stroke="#9ba28c" stroke-width="${Math.max(2,size*.044)}" stroke-linecap="round"/>`;
+}
+
+function ruleExampleGrid(x,y,cols,rows,size,{fill='#e8eddc',outline=true}={}) {
+  const width=cols*size,height=rows*size;
+  let art=outline
+    ? `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="9" fill="${fill}" stroke="#9eae8c" stroke-width="2.5"/>`
+    : '';
+  if(!outline){
+    // Individual neutral floor tiles are deliberately not enclosed by a region boundary.
+    for(let row=0;row<rows;row++)for(let col=0;col<cols;col++)art+=`<rect x="${x+col*size+1}" y="${y+row*size+1}" width="${size-2}" height="${size-2}" rx="4" fill="#eee9df"/>`;
+    return art;
+  }
+  for(let col=1;col<cols;col++)art+=`<path d="M${x+col*size} ${y+1}v${height-2}" fill="none" stroke="#bfc9ae" stroke-width="1.2"/>`;
+  for(let row=1;row<rows;row++)art+=`<path d="M${x+1} ${y+row*size}h${width-2}" fill="none" stroke="#bfc9ae" stroke-width="1.2"/>`;
+  return art;
+}
+
+function ruleExampleQuota(wardrobe) {
+  let art='';
+  for(let example=0;example<3;example++){
+    const count=example+1,left=5+example*100,valid=count===2;
+    art+=`<rect x="${left}" y="4" width="90" height="94" rx="13" fill="${valid?'#f0f4e8':'#f7f2e9'}"/>`;
+    art+=ruleExampleGrid(left+3,17,3,1,28);
+    for(let col=0;col<count;col++)art+=ruleExampleRabbit(wardrobe,col,left+3+col*28,17,28);
+    art+=ruleExampleText(left+45,68,`${count} 只 ${valid?'✓':'✕'}`,{size:14,color:valid?'#66835c':'#af7568'});
+    art+=ruleExampleText(left+45,86,valid?'刚刚好':count===1?'少了一只':'多了一只',{size:11,weight:500});
+  }
+  return {height:104,art};
+}
+
+function ruleExampleNotes(wardrobe) {
+  const left=88,top=7,size=62;
+  let art=ruleExampleGrid(left,top,2,2,size);
+  art+=ruleExampleRabbit(wardrobe,0,left,top,size);
+  art+=ruleExampleRabbit(wardrobe,1,left+size,top,size);
+  art+=ruleExampleNote(left+size*.5,top+size*1.5,size);
+  art+=ruleExampleNote(left+size*1.5,top+size*1.5,size);
+  art+=ruleExampleText(150,153,'已经有 2 只，其余留空',{size:13});
+  return {height:164,art};
+}
+
+function ruleExampleNeighbors(wardrobe) {
+  const examples=[
+    {x:8,y:4,gridX:42,gridY:34,size:35,cols:2,rows:1,guests:[[0,0],[0,1]],label:'左右相邻 ✓',valid:true},
+    {x:154,y:4,gridX:207,gridY:14,size:32,cols:1,rows:2,guests:[[0,0],[1,0]],label:'上下相邻 ✓',valid:true},
+    {x:8,y:127,gridX:45,gridY:139,size:32,cols:2,rows:2,guests:[[0,0],[1,1]],label:'斜角不算 ✕',valid:false},
+    {x:154,y:127,gridX:176.5,gridY:155,size:31,cols:3,rows:1,guests:[[0,0],[0,1],[0,2]],label:'三只相连 ✕',valid:false},
+  ];
+  let art='';
+  for(const example of examples){
+    const {x,y,gridX,gridY,size,cols,rows,guests,label,valid}=example;
+    art+=`<rect x="${x}" y="${y}" width="138" height="116" rx="13" fill="#f8f4ec"/>`;
+    art+=ruleExampleGrid(gridX,gridY,cols,rows,size,{outline:false});
+    guests.forEach(([row,col],seed)=>{art+=ruleExampleRabbit(wardrobe,seed,gridX+col*size,gridY+row*size,size);});
+    art+=ruleExampleText(x+69,y+100,label,{size:13,color:valid?'#66835c':'#af7568'});
+  }
+  return {height:248,art};
+}
+
+function ruleExampleCrossing(wardrobe,withNotes) {
+  const left=51,top=10,size=66,width=size*3,height=size*2;
+  let art=ruleExampleGrid(left,top,3,2,size);
+  art+=`<path d="M${left+1} ${top+size}H${left+width-1}V${top+height-9}q0 8-8 8H${left+9}q-8 0-8-8Z" fill="#e9e0ee"/>`;
+  for(let col=1;col<3;col++)art+=`<path d="M${left+col*size} ${top+size}v${size-1}" fill="none" stroke="#c9bacd" stroke-width="1.2"/>`;
+  art+=`<path d="M${left+1} ${top+size}H${left+width-1}" fill="none" stroke="#899578" stroke-width="3.5"/>`;
+  for(const col of [0,2]){
+    // Solid pair frames cross the regional border; the border is still visible inside them.
+    art+=`<rect x="${left+col*size+6}" y="${top+5}" width="${size-12}" height="${height-10}" rx="23" fill="#fffcef" fill-opacity=".34" stroke="#b59b6f" stroke-width="2.5"/>`;
+    for(let row=0;row<2;row++)art+=ruleExampleRabbit(wardrobe,col+row,left+col*size,top+row*size,size);
+  }
+  if(withNotes)for(let row=0;row<2;row++)art+=ruleExampleNote(left+size*1.5,top+size*(row+.5),size);
+  for(let row=0;row<2;row++){
+    art+=ruleExampleText(27,top+size*(row+.5)+5,`${row===0?'A':'B'} 区`,{size:12});
+    art+=ruleExampleText(273,top+size*(row+.5)+5,'2 只',{size:12,color:'#738461'});
+  }
+  art+=ruleExampleText(150,164,'A 区的两只，不必互相作伴',{size:12});
+  return {height:177,art};
+}
+
+/** Rule examples share the player's bunny artwork and remain self-contained SVG. */
+function ruleExampleSvg(kind,wardrobe) {
+  let example;
+  if(kind==='quota')example=ruleExampleQuota(wardrobe);
+  else if(kind==='notes')example=ruleExampleNotes(wardrobe);
+  else if(kind==='neighbors')example=ruleExampleNeighbors(wardrobe);
+  else if(kind==='crossing'||kind==='complete')example=ruleExampleCrossing(wardrobe,kind==='complete');
+  else throw new RangeError(`Unknown rule example: ${kind}`);
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 ${example.height}" aria-hidden="true" focusable="false" class="rule-example-art" data-rule-example="${kind}">${example.art}</svg>`;
+}
+
+/* ./lesson-intro.mjs */
+function lessonIntroPages(lesson, wardrobe) {
+  if(lesson.id==='two-guests')return [{
+    title:'每区恰好两只',
+    copy:'粗边框圈起的是一个区域。不管区域有几格，都要放恰好两只小兔，其余格子留空。',
+    prompt:'这次有三格，试着请来两只。少一只、多一只都不行。',
+    art:ruleExampleSvg('quota',wardrobe)
+  }];
+  if(lesson.id==='empty-notes')return [{
+    title:'× 是留空的笔记',
+    copy:'这一区已经有两只，其他格子就不再放兔子。画 × 可以帮你记住空位，不画也能过关。',
+    prompt:'选「留空」，给任意一个空格画 ×，学会后就能继续。再点一次可以擦掉。',
+    art:ruleExampleSvg('notes',wardrobe)
+  }];
+  if(lesson.id==='across-garden')return [{
+    title:'每只恰好一位舞伴',
+    copy:'看每只小兔的上下左右，必须恰好挨着一只小兔。没有邻居会落单，挨着两只也不行。',
+    prompt:'左右、上下挨着的两只是舞伴。斜角不算相邻，不能用来配对。',
+    art:ruleExampleSvg('neighbors',wardrobe)
+  },{
+    title:'同区两只，不一定是一对',
+    copy:'区域只管数量，舞伴看上下左右是否相邻。两只小兔隔着分区线，也能配成一对。',
+    prompt:'图中 A、B 区各有两只，却是上下各配成一对。已经成对的不同组，斜角碰到没关系。',
+    art:ruleExampleSvg('crossing',wardrobe)
+  }];
   throw new RangeError(`Unknown tutorial introduction: ${lesson.id}`);
+}
+function rulesOverviewMarkup(wardrobe) {
+  return `<p class="rules-goal">同时满足下面两条，就会自动过关。</p>
+    <div class="help-rule"><span>1</span><div><h3>每区恰好两只</h3><p>粗边框圈起一个区域。区域无论大小，都要放两只，其余格子留空。</p></div></div>
+    <div class="help-rule"><span>2</span><div><h3>每只恰好一位舞伴</h3><p>每只小兔的上下左右，必须恰好挨着一只。没有邻居不行，挨着两只也不行。斜角不算舞伴。</p></div></div>
+    <section class="rules-crossing"><h3>舞伴可以跨区</h3><p>同区的两只不一定互相配对；图中每区两只，同时每只都只有一位相邻舞伴。</p><div class="rules-complete-art">${ruleExampleSvg('crossing',wardrobe)}</div><p>不同对不能上下左右贴在一起，否则就会多出邻居。两对斜角碰到没关系。</p></section>
+    <details class="rules-examples"><summary>看看相邻、斜角和三只相连的区别</summary>${ruleExampleSvg('neighbors',wardrobe)}</details>
+    <p class="rules-controls"><strong>怎么操作</strong>点空格放兔子，再点小兔收回；选「留空」画 ×，再点擦掉。× 是可选笔记，不必画满。兔子花色和配饰不影响配对。</p>`;
 }
 
 /* ./progress.mjs */
@@ -5685,10 +5794,12 @@ function restoreProgress(raw) {
   const unlocked = progressStage(progressOwn(tutorial, 'unlocked'), requestedStep);
   const step = Math.min(requestedStep, unlocked);
   const lessonIds = new Set(LESSONS.map(lesson => lesson.id));
-  const introduced = [...new Set(progressItems(progressOwn(tutorial, 'introduced')).filter(id => lessonIds.has(id)))];
+  const introVersion = progressOwn(tutorial, 'introVersion') === TUTORIAL_RULES_VERSION ? TUTORIAL_RULES_VERSION : 0;
+  // Revised explanations may be revisited without resetting any practice board.
+  const introduced = introVersion ? [...new Set(progressItems(progressOwn(tutorial, 'introduced')).filter(id => lessonIds.has(id)))] : [];
   const savedLessons = progressRecord(progressOwn(tutorial, 'saves'));
   const lessonSaves = Object.fromEntries(LESSONS.map(lesson => [lesson.id, progressLessonBoard(lesson, progressOwn(savedLessons, lesson.id))]));
-  return {version: 3, levelId, index, completed, saves, archived, onboarding: {step, unlocked, introduced, saves: lessonSaves}};
+  return {version: 3, levelId, index, completed, saves, archived, onboarding: {step, unlocked, introVersion, introduced, saves: lessonSaves}};
 }
 
 /** Save one board into its own branch while preserving the other branch. */
@@ -5728,11 +5839,6 @@ const SOUND_KEY='bunny-duet-sound-v1';
 const WARDROBE_KEY='bunny-duet-wardrobe-v1';
 const PALETTE=['#e3e9cf','#e7d9ec','#f4e6c7','#d5e6dc','#efdbd4','#d9e5ee','#e5dfc9','#e4d9e9'];
 const BUNNIES=BUNNY_LOOKS.map(item=>item.name);
-const RULES=[
-  {title:'每区恰好两只',copy:'分区线围起的是一片区域，每区邀请两只小兔。'},
-  {title:'每只只有一位舞伴',copy:'每只小兔上下左右只能挨着一位舞伴；斜角碰到没关系。'},
-  {title:'舞伴可以跨区',copy:'同区两只不一定是一对。不同对不能贴边，斜角碰到没关系。'}
-];
 
 let progress=restoreProgress(null);
 try{progress=restoreProgress(localStorage.getItem(STORAGE_KEY));}catch{}
@@ -5743,6 +5849,7 @@ let wardrobeReturn='home',wardrobePreviewVariant=wardrobe.variants[0],wardrobePr
 let dancers=new Set(),marks=new Set(),history=[],mode='place',activeHint=null,hintStage=0,hintSignature='',statusMessage='',won=false;
 let renderedHint=null,renderedHintStage=-1;
 let screen='home',mapReturn='home',albumReturn='home',renderedPairs=new Set(),soundOn=true,audioContext=null;
+let lessonIntroPage=0,helpPracticePending=false;
 let mapChapter=Math.floor(index/10);
 let freshMementos=[];
 let freshWardrobeRewards={bunnies:[],accessories:[]};
@@ -5827,21 +5934,28 @@ function renderSound(){
   $('pause-sound').setAttribute('aria-pressed',String(soundOn));
 }
 function toggleSound(){soundOn=!soundOn;if(!vipSession){try{localStorage.setItem(SOUND_KEY,soundOn?'on':'off');}catch{}}renderSound();if(soundOn)cue('place');}
-function closeDialogs(){document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());}
+function closeDialogs(){helpPracticePending=false;document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());}
+function renderLessonIntro(){
+  const pages=lessonIntroPages(currentLesson(),wardrobe),intro=pages[lessonIntroPage];
+  setText('lesson-intro-step',`第一次舞会 · ${onboarding.step+1} / ${LESSONS.length}${pages.length>1?` · 图解 ${lessonIntroPage+1} / ${pages.length}`:''}`);
+  setText('lesson-intro-title',intro.title);setText('lesson-intro-copy',intro.copy);
+  setText('lesson-intro-prompt',intro.prompt);$('lesson-intro-art').innerHTML=intro.art;
+  $('lesson-intro-prev').hidden=lessonIntroPage===0;
+  setText('lesson-intro-start',lessonIntroPage<pages.length-1?'继续':'试试看 →');
+  $('lesson-intro-dialog').scrollTop=0;
+}
 function maybeOpenLessonIntro(){
   const lesson=currentLesson();
   if(screen!=='play'||!lesson||onboarding.introduced.includes(lesson.id))return;
-  const intro=lessonIntroContent(lesson,wardrobe);
-  setText('lesson-intro-step',`第一次舞会 · ${onboarding.step+1} / ${LESSONS.length}`);
-  setText('lesson-intro-title',intro.title);setText('lesson-intro-copy',intro.copy);
-  setText('lesson-intro-prompt',intro.prompt);$('lesson-intro-art').innerHTML=intro.art;
+  lessonIntroPage=0;renderLessonIntro();
   $('lesson-intro-dialog').showModal();
   $('lesson-intro-start').focus({preventScroll:true});
 }
 function startLessonPractice(){
   const lesson=currentLesson();
   if(screen!=='play'||!lesson||!$('lesson-intro-dialog').open)return;
-  onboarding.introduced=[...new Set([...onboarding.introduced,lesson.id])];save();
+  if(lessonIntroPage<lessonIntroPages(lesson,wardrobe).length-1){lessonIntroPage++;renderLessonIntro();return;}
+  onboarding.introVersion=TUTORIAL_RULES_VERSION;onboarding.introduced=[...new Set([...onboarding.introduced,lesson.id])];save();
   $('lesson-intro-dialog').close();
   const view=lessonView();
   const target=view.complete?$('lesson-next'):view.action==='mark'?$('mark-mode'):$('board').querySelector(`[data-cell="${view.focusCells[0]}"]`);
@@ -6190,8 +6304,9 @@ function fitBoard(){
 }
 function render({animate=false,award=false}={}){
   const level=currentLevel(),lesson=currentLesson(),view=lessonView(),state=evaluate(level,[...dancers]);
-  const rows=level.regions.length,cols=level.regions[0].length,colors=boardColors(level),pairedCells=new Set(state.pairs.flat());
-  const pairKeys=state.pairs.map(pair=>`${level.id}:${pair.join('|')}`),newPairs=new Set(animate?pairKeys.filter(key=>!renderedPairs.has(key)):[]);
+  const quotaOnly=lesson?.id==='two-guests',pairs=quotaOnly?[]:state.pairs;
+  const rows=level.regions.length,cols=level.regions[0].length,colors=boardColors(level),pairedCells=new Set(pairs.flat());
+  const pairKeys=pairs.map(pair=>`${level.id}:${pair.join('|')}`),newPairs=new Set(animate?pairKeys.filter(key=>!renderedPairs.has(key)):[]);
   renderedPairs=new Set(pairKeys);document.body.dataset.tutorial=String(!!lesson);
   document.body.dataset.boardSize=rows>=7?'large':'regular';
   setText('hud-label',lesson?'初次赴约':`第 ${chapterIndex()+1} 章 · ${CHAPTERS[chapterIndex()].title}`);setText('level-title',lesson?'第一次舞会':LEVELS[index].title);
@@ -6204,8 +6319,8 @@ function render({animate=false,award=false}={}){
     setText('lesson-kicker','咕咕 · 舞会管家');setText('lesson-progress',`${view.progress.current} / ${view.progress.total}`);
     setText('lesson-title',onboarding.step===2&&['mark-a','first-partner'].includes(view.phase)?'还有小兔在等舞伴':lesson.title);
     setText('lesson-message',statusMessage||view.message);
-    setText('lesson-success',['两位客人都迎进来了。','空位记好了，安排妥当。','没人落单，可以开场了。'][onboarding.step]);
-    setText('lesson-next',['学画一个 ×','去找隔壁舞伴','自己试试完整舞池'][onboarding.step]);
+    setText('lesson-success',['每区两只，不用填满。','会画 × 就可以啦，不必画满。','每区两只 ✓ · 每只一位相邻舞伴 ✓'][onboarding.step]);
+    setText('lesson-next','继续');
   }else{delete $('board').dataset.lesson;setText('objective','每区两只小兔 · 每只只有一位相邻舞伴');}
   const firstCells=new Set(state.regions.map(region=>region.cells[0])),focusKey=document.activeElement?.dataset?.cell;
   $('board').style.setProperty('--cols',cols);$('board').style.setProperty('--rows',rows);$('board').style.aspectRatio=`${cols} / ${rows}`;
@@ -6213,10 +6328,10 @@ function render({animate=false,award=false}={}){
   $('board').innerHTML=level.regions.flatMap((row,r)=>Array.from(row,(region,c)=>{
     const key=`${r},${c}`,placed=dancers.has(key),marked=marks.has(key),isHint=hintStage===2&&activeHint?.cell===key;
     const hintArea=hintStage===2?activeHint?.related:(activeHint?.focusCells||activeHint?.related);
-    const classes=['cell',c<cols-1&&row[c+1]!==region?'edge-r':'',r<rows-1&&level.regions[r+1][c]!==region?'edge-b':'',state.crowded.includes(key)?'crowded':'',state.lonely.includes(key)?'lonely':'',pairedCells.has(key)?'paired-cell':'',isHint?'hint-cell':'',hintArea?.includes(key)?'related':'',view?.focusCells.includes(key)?'lesson-target':'',lesson?.initialDancers.includes(key)?'lesson-fixed':''].filter(Boolean).join(' ');
-    const label=placed?`${BUNNIES[lookVariant(r*cols+c)]}，${pairedCells.has(key)?'已有舞伴':'等待舞伴'}`:marked?'已标留空':'空位';
+    const classes=['cell',c<cols-1&&row[c+1]!==region?'edge-r':'',r<rows-1&&level.regions[r+1][c]!==region?'edge-b':'',!quotaOnly&&state.crowded.includes(key)?'crowded':'',!quotaOnly&&state.lonely.includes(key)?'lonely':'',pairedCells.has(key)?'paired-cell':'',isHint?'hint-cell':'',hintArea?.includes(key)?'related':'',view?.focusCells.includes(key)?'lesson-target':'',lesson?.initialDancers.includes(key)?'lesson-fixed':''].filter(Boolean).join(' ');
+    const label=placed?`${BUNNIES[lookVariant(r*cols+c)]}，${quotaOnly?'已入场':pairedCells.has(key)?'已有舞伴':'等待舞伴'}`:marked?'已标留空':'空位';
     return `<button class="${classes}" style="--region-color:${colors.get(region)}" data-cell="${key}" aria-label="${cellLabel(key)}，${region}区，${label}${isHint?'，提示位置':''}" aria-pressed="${placed}">${firstCells.has(key)?`<span class="region-tag">${region}</span>`:''}${placed?(pairedCells.has(key)?'':lookBunny(r*cols+c)):marked?'<span class="cross">×</span>':''}</button>`;
-  })).join('')+`<div class="dance-layer">${state.pairs.map((pair,i)=>pairMarkup(pair,newPairs.has(pairKeys[i]))).join('')}</div>`;
+  })).join('')+`<div class="dance-layer">${pairs.map((pair,i)=>pairMarkup(pair,newPairs.has(pairKeys[i]))).join('')}</div>`;
   if(focusKey)$('board').querySelector(`[data-cell="${focusKey}"]`)?.focus({preventScroll:true});
   $('region-list').innerHTML=state.regions.map(region=>`<div class="region-chip ${region.count>2?'excess':region.count===2?'complete':''}" style="--region-color:${colors.get(region.id)}" aria-label="${region.id}区，已有${region.count}只，目标2只"><b>${region.id}</b><span class="quota-dots" aria-hidden="true"><i class="${region.count>0?'filled':''}"></i><i class="${region.count>1?'filled':''}"></i></span>${region.count>2?`<small>+${region.count-2}</small>`:''}</div>`).join('');
   setText('pair-count',lesson&&onboarding.step<2?dancers.size:state.pairs.length);
@@ -6302,12 +6417,17 @@ function reset(){
   dancers=new Set(initial.dancers);marks=new Set(initial.marks);closeDialogs();finishChange({animate:false});
   if(!currentLesson()){statusMessage=changed?'舞池清空啦。误点了可以撤销。':'舞池已经是空的啦。';render();}
 }
-function openHelp(){
-  const view=screen==='play'?lessonView():null,rules=view?view.rules:RULES;
-  setText('help-title',view?'先学这一步就好':'两只小兔，一支舞');
-  $('help-content').innerHTML=rules.map((rule,i)=>`<div class="help-rule"><span>${i+1}</span><div><h3>${rule.title}</h3><p>${rule.copy}</p></div></div>`).join('')+
-    (view?'<p class="help-note">请柬要对上人，也不能让客人落单。拿不准的时候，我就在场边。——舞会管家咕咕</p>':`<div class="help-pair">${lookPair(0,1)}</div><p class="help-note">点空位邀请，再点小兔收回。「× 留空」是可选笔记，不必画满。随时可以撤销。</p>`);
-  $('help-dialog').showModal();
+function openHelp({startPractice=false}={}){
+  helpPracticePending=startPractice;
+  setText('help-title',startPractice?'开场前，记住这两条':'怎样才算摆对？');
+  $('help-content').innerHTML=rulesOverviewMarkup(wardrobe);
+  setText('help-start',startPractice?'开始游戏':'明白啦');
+  $('help-dialog').showModal();$('help-content').scrollTop=0;
+}
+function closeHelp(){helpPracticePending=false;$('help-dialog').close();}
+function confirmHelp(){
+  const startPractice=helpPracticePending;closeHelp();
+  if(startPractice){onboarding.unlocked=LESSONS.length;chooseLesson(LESSONS.length);}
 }
 function clearHint(){activeHint=null;hintStage=0;hintSignature='';}
 function boardSignature(){return `${currentLevel().id}|${[...dancers].sort().join(';')}|${[...marks].sort().join(';')}`;}
@@ -6388,16 +6508,18 @@ $('wardrobe-discovery-dialog').addEventListener('close',()=>{if(screen==='map')$
 $('wardrobe-discovery-wear').onclick=()=>{openWardrobe();wardrobeSlot='body';wardrobeTab='accessories';renderWardrobe();const item=$('wardrobe-accessories').querySelector('button[data-accessory="satchel"]');item?.scrollIntoView?.({block:'nearest'});item?.focus({preventScroll:true});};
 $('levels').addEventListener('click',event=>{if(event.target.closest('#tea-parcel')){openTeaParcel();return;}const button=event.target.closest('[data-level]');if(button)chooseLevel(Number(button.dataset.level));});
 $('map-continue').onclick=()=>chooseLevel(journeyDestination().number-1);
-$('lesson-path').addEventListener('click',event=>{const button=event.target.closest('[data-lesson]');if(button&&!button.disabled)chooseLesson(Number(button.dataset.lesson));});
-$('lesson-skip').onclick=()=>{onboarding.unlocked=LESSONS.length;chooseLesson(LESSONS.length);};
-$('lesson-next').onclick=()=>{if(!lessonView()?.complete)return;onboarding.unlocked=Math.max(onboarding.unlocked,onboarding.step+1);chooseLesson(onboarding.step+1);};
+$('lesson-path').addEventListener('click',event=>{const button=event.target.closest('[data-lesson]');if(!button||button.disabled)return;const step=Number(button.dataset.lesson);if(step===LESSONS.length)openHelp({startPractice:true});else chooseLesson(step);});
+$('lesson-skip').onclick=()=>openHelp({startPractice:true});
+$('lesson-next').onclick=()=>{if(!lessonView()?.complete)return;if(onboarding.step===LESSONS.length-1){openHelp({startPractice:true});return;}onboarding.unlocked=Math.max(onboarding.unlocked,onboarding.step+1);chooseLesson(onboarding.step+1);};
 $('lesson-intro-start').onclick=startLessonPractice;$('lesson-intro-home').onclick=leaveLessonIntro;
+$('lesson-intro-prev').onclick=()=>{if(!$('lesson-intro-dialog').open||lessonIntroPage===0)return;lessonIntroPage--;renderLessonIntro();$('lesson-intro-start').focus({preventScroll:true});};
 $('lesson-intro-dialog').addEventListener('cancel',event=>{event.preventDefault();leaveLessonIntro();});
 $('place-mode').onclick=()=>setMode('place');$('mark-mode').onclick=()=>setMode('mark');$('undo').onclick=undo;
 $('pause-open').onclick=()=>{renderSound();$('pause-dialog').showModal();};
 $('pause-close').onclick=()=>$('pause-dialog').close();$('pause-resume').onclick=()=>$('pause-dialog').close();
 $('pause-home').onclick=()=>{save();showScreen('home');};$('reset').onclick=reset;
-$('help-open').onclick=openHelp;$('home-help').onclick=openHelp;$('help-close').onclick=()=>$('help-dialog').close();$('help-start').onclick=()=>$('help-dialog').close();
+$('help-open').onclick=()=>openHelp();$('home-help').onclick=()=>openHelp();$('help-close').onclick=closeHelp;$('help-start').onclick=confirmHelp;
+$('help-dialog').addEventListener('cancel',()=>{helpPracticePending=false;});
 $('hint-button').onclick=openHint;$('hint-close').onclick=()=>$('hint-dialog').close();$('hint-dismiss').onclick=()=>$('hint-dialog').close();$('hint-more').onclick=moreHint;$('apply-hint').onclick=applyHint;
 $('guest-cast-open').onclick=()=>$('guest-cast-dialog').showModal();
 $('guest-cast-close').onclick=()=>$('guest-cast-dialog').close();$('guest-cast-done').onclick=()=>$('guest-cast-dialog').close();
@@ -6410,6 +6532,7 @@ $('result-wardrobe').onclick=()=>{const bunny=freshWardrobeRewards.bunnies[0],ac
 $('win-wardrobe-rewards').addEventListener('click',event=>{const bunny=event.target.closest('[data-reward-bunny]');if(bunny){openWardrobeReward('bunny',bunny.dataset.rewardBunny);return;}const accessory=event.target.closest('[data-reward-accessory]');if(accessory)openWardrobeReward('accessory',accessory.dataset.rewardAccessory);});
 document.addEventListener('keydown',event=>{
   if($('lesson-intro-dialog').open){if(event.key==='Escape'){event.preventDefault();leaveLessonIntro();}return;}
+  if($('help-dialog').open&&event.key==='Escape')helpPracticePending=false;
   if(screen!=='play'||document.querySelector('dialog[open]')||event.altKey||event.target.closest('input,textarea,select'))return;
   if(event.key==='Escape'){event.preventDefault();$('pause-open').click();}
   if(event.key.toLowerCase()==='m'&&!event.ctrlKey&&!event.metaKey)setMode(mode==='place'?'mark':'place');
