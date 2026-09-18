@@ -1,4 +1,4 @@
-# bunnybunny
+# BunnyBunny
 
 Every bunny needs a buddy. 给每只小兔，找个刚刚好的伴。
 
