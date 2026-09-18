@@ -966,6 +966,42 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* One small rule before the first tap; the board teaches the rest. */
+.game-dialog.lesson-intro-dialog { width: min(calc(100% - 28px), 410px); max-width: 410px; max-height: calc(100dvh - 28px); padding: 22px 24px 16px; border-color: #dedfc9; border-radius: 26px; background: #fffaf0; }
+.lesson-intro-host { display: flex; align-items: center; gap: 10px; min-width: 0; }
+#lesson-intro-owl { display: block; flex: 0 0 45px; width: 45px; height: 45px; }
+#lesson-intro-owl > svg { display: block; width: 100%; height: 100%; }
+.lesson-intro-host p { color: #71835e; font-size: 12px; line-height: 1.5; font-weight: 700; }
+#lesson-intro-step { display: block; margin-top: 3px; color: #8e957e; font-size: 10px; line-height: 1.5; }
+.lesson-intro-flower { margin-left: auto; color: #c0caa2; font-size: 29px; line-height: 1; }
+.lesson-intro-dialog h2 { margin: 17px 0 9px; color: #61764f; font-size: 23px; line-height: 1.45; text-wrap: balance; }
+.lesson-intro-copy { color: #6f7b60; font-size: 13px; line-height: 1.8; }
+.lesson-intro-art { margin: 14px 0 11px; padding: 5px 6px; border: 1px solid #e3e3ce; border-radius: 20px; background: #f7f5e8; box-shadow: inset 0 2px 0 #fffdf5; }
+.lesson-intro-art > svg { display: block; width: 100%; max-height: 152px; margin: 0 auto; }
+.lesson-intro-prompt { color: #677951; font-size: 12px; line-height: 1.8; }
+.lesson-intro-actions { display: flex; flex-direction: column; align-items: stretch; gap: 6px; margin-top: 17px; }
+.lesson-intro-actions .primary-button { min-height: 46px; font-size: 14px; }
+.lesson-intro-actions .text-button { min-height: 38px; padding: 8px; color: #899078; font-size: 11px; }
+@media (max-width: 380px) {
+  .game-dialog.lesson-intro-dialog { padding: 18px 18px 12px; }
+  .lesson-intro-dialog h2 { margin-top: 13px; font-size: 21px; }
+  .lesson-intro-art { margin-top: 11px; }
+  .lesson-intro-actions { margin-top: 13px; }
+}
+@media (max-height: 560px) and (min-width: 600px) {
+  .game-dialog.lesson-intro-dialog { width: min(calc(100% - 28px), 650px); max-width: 650px; max-height: calc(100dvh - 20px); padding: 15px 20px; border-radius: 22px; }
+  .lesson-intro-dialog[open] { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 20px; row-gap: 7px; }
+  .lesson-intro-host { grid-column: 1 / -1; grid-row: 1; }
+  #lesson-intro-owl { flex-basis: 36px; width: 36px; height: 36px; }
+  .lesson-intro-dialog h2 { grid-column: 2; grid-row: 2; margin: 4px 0 0; font-size: 20px; }
+  .lesson-intro-copy { grid-column: 2; grid-row: 3; font-size: 12px; line-height: 1.7; }
+  .lesson-intro-art { grid-column: 1; grid-row: 2 / 5; display: flex; align-items: center; margin: 4px 0 0; }
+  .lesson-intro-prompt { grid-column: 2; grid-row: 4; font-size: 11px; line-height: 1.7; }
+  .lesson-intro-actions { grid-column: 1 / -1; grid-row: 5; flex-direction: row; align-items: center; gap: 12px; margin-top: 5px; }
+  .lesson-intro-actions .primary-button { flex: 1; min-height: 42px; padding: 10px 18px; font-size: 13px; }
+  .lesson-intro-actions .text-button { flex: 0 0 auto; min-height: 42px; }
+}
 </style>
   <style>/* The wardrobe is a room and a toy cabinet, with one inventory open at a time. */
 .wardrobe-screen {
@@ -1530,6 +1566,14 @@ body[data-vip="true"] .game-shell { flex: 1 1 0; min-height: 0; height: auto; }
     <div class="vip-panel-actions"><button id="vip-complete" class="primary-button" type="button" hidden>完成当前关</button><div class="vip-panel-destinations"><button id="vip-wardrobe" class="secondary-button" type="button">去衣橱看看</button><button id="vip-map" class="secondary-button" type="button">舞会地图</button></div><button id="vip-exit" class="text-button vip-exit" type="button">退出展示，回到原进度</button></div>
   </dialog>
   <dialog id="pause-dialog" class="game-dialog pause-dialog" aria-labelledby="pause-title"><button id="pause-close" class="dialog-close icon-button" type="button" aria-label="关闭暂停菜单"><span class="icon" aria-hidden="true">×</span></button><p class="eyebrow">TAKE YOUR TIME</p><h2 id="pause-title">休息一下。</h2><p class="dialog-copy">小兔会在这里，等你回来。</p><div class="pause-actions"><button id="pause-resume" class="primary-button" type="button">继续舞会 →</button><button id="reset" class="secondary-button" type="button"><span class="icon" aria-hidden="true">↻</span><span>重新开始这一关</span></button><button id="pause-sound" class="secondary-button" type="button" aria-pressed="true"><span class="icon" aria-hidden="true">♪</span><span>声音开启</span></button><button id="pause-wardrobe" class="secondary-button" type="button">小兔衣橱</button><button id="pause-map" class="secondary-button" type="button">舞会地图</button><button id="pause-home" class="text-button" type="button">回到首页</button></div></dialog>
+  <dialog id="lesson-intro-dialog" class="game-dialog lesson-intro-dialog" aria-labelledby="lesson-intro-title" aria-describedby="lesson-intro-copy lesson-intro-prompt">
+    <header class="lesson-intro-host"><span id="lesson-intro-owl" aria-hidden="true"></span><div><p>舞会管家 · 咕咕</p><span id="lesson-intro-step">出发前的小练习 · 1 / 3</span></div><span class="lesson-intro-flower" aria-hidden="true">✿</span></header>
+    <h2 id="lesson-intro-title">这一小片，只请两只</h2>
+    <p id="lesson-intro-copy" class="lesson-intro-copy"></p>
+    <div id="lesson-intro-art" class="lesson-intro-art" aria-hidden="true"></div>
+    <p id="lesson-intro-prompt" class="lesson-intro-prompt"></p>
+    <div class="lesson-intro-actions"><button id="lesson-intro-start" class="primary-button" type="button">试试看 →</button><button id="lesson-intro-home" class="text-button" type="button">先回首页</button></div>
+  </dialog>
   <dialog id="help-dialog" class="game-dialog help-dialog" aria-labelledby="help-title"><button id="help-close" class="dialog-close icon-button" type="button" aria-label="关闭玩法"><span class="icon" aria-hidden="true">×</span></button><p class="eyebrow">EVERY BUNNY NEEDS A BUDDY</p><h2 id="help-title">两位客人，一支舞。</h2><div id="help-content" class="help-content"></div><button id="help-start" class="primary-button" type="button">明白啦</button></dialog>
   <dialog id="hint-dialog" class="game-dialog hint-dialog" data-stage="0" aria-labelledby="hint-title" aria-describedby="hint-stage-label">
     <button id="hint-close" class="dialog-close icon-button" type="button" aria-label="关闭提示"><span class="icon" aria-hidden="true">×</span></button>
@@ -5467,6 +5511,63 @@ function lessonChange(lesson, dancers = [], marks = [], key, action = 'place') {
   return {ok: true, ...next, message: lessonState(lesson, next.dancers, next.marks).message};
 }
 
+/* ./lesson-intro.mjs */
+
+
+
+// Prefix these helpers because the single-file build shares one module scope.
+function lessonIntroRabbit(wardrobe, seed, x, y, size) {
+  const variant=wardrobeVariant(wardrobe,seed);
+  return animalSvg(variant,{outfit:wardrobeOutfit(wardrobe,variant)})
+    .replace('<svg',`<svg x="${x+size*.18}" y="${y+size*.06}" width="${size*.64}" height="${size*.84}"`);
+}
+
+function lessonIntroGrid(wardrobe, kind) {
+  const simple=kind==='two-guests',cross=kind==='across-garden';
+  const size=simple?92:64,cols=simple?2:3,rows=simple?1:2;
+  const left=(300-cols*size)/2,top=simple?28:8;
+  const guests=simple?[[0,0,0],[0,1,1]]:cross?[[0,0,0],[0,2,1],[1,0,1],[1,2,0]]:[[0,0,0],[0,1,1]];
+  const notes=simple?[]:cross?[[0,1],[1,1]]:[[0,2],[1,0],[1,1],[1,2]];
+  const width=cols*size,height=rows*size;
+  let art=`<rect x="${left-5}" y="${top-5}" width="${width+10}" height="${height+10}" rx="17" fill="#d7ddc7" opacity=".45"/>`;
+  art+=`<rect x="${left}" y="${top}" width="${width}" height="${height}" rx="12" fill="#e4ead4" stroke="#b8c4a2" stroke-width="2"/>`;
+  if(cross)art+=`<path d="M${left} ${top+size}H${left+width}V${top+height-12}q0 12-12 12H${left+12}q-12 0-12-12Z" fill="#e8dfec"/>`;
+  for(let col=1;col<cols;col++)art+=`<path d="M${left+col*size} ${top+2}V${top+height-2}" stroke="#b6c2a1" stroke-opacity=".48" stroke-width="1.5"/>`;
+  if(rows>1)art+=`<path d="M${left+2} ${top+size}H${left+width-2}" stroke="${cross?'#879474':'#b6c2a1'}" stroke-opacity="${cross?1:.48}" stroke-width="${cross?3:1.5}"/>`;
+  if(cross){
+    for(const col of [0,2])art+=`<rect x="${left+col*size+8}" y="${top+5}" width="${size-16}" height="${height-10}" rx="23" fill="#fffdf2" fill-opacity=".43" stroke="#fffdf2" stroke-width="2"/>`;
+    art+=`<path d="M${left+2} ${top+size}H${left+width-2}" stroke="#879474" stroke-opacity=".7" stroke-width="2"/>`;
+    art+=`<g fill="#7e8c6a" font-family="system-ui,sans-serif" font-size="11" font-weight="700" text-anchor="middle"><text x="${left-17}" y="${top+size*.57}">A</text><text x="${left-17}" y="${top+size*1.57}">B</text></g>`;
+  }
+  for(const [row,col,seed]of guests)art+=lessonIntroRabbit(wardrobe,seed,left+col*size,top+row*size,size);
+  for(const [row,col]of notes){
+    const x=left+(col+.5)*size,y=top+(row+.5)*size;
+    art+=`<path d="M${x-6} ${y-6}l12 12m0-12l-12 12" fill="none" stroke="#99a285" stroke-width="3" stroke-linecap="round"/>`;
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 148" aria-hidden="true" focusable="false" class="lesson-intro-board">${art}</svg>`;
+}
+function lessonIntroContent(lesson, wardrobe) {
+  if(lesson.id==='two-guests')return {
+    title:'这一小片，只请两只',
+    copy:'同一种底色、被分区线围起来的，就是一个区域。每区恰好放两只小兔。',
+    prompt:'点一下亮着的空格，把两位客人请进来吧。',
+    art:lessonIntroGrid(wardrobe,lesson.id)
+  };
+  if(lesson.id==='empty-notes')return {
+    title:'空着的地方，记个 ×',
+    copy:'这一区已经有两只小兔啦。其他格子可以画 ×，提醒自己这里留空。',
+    prompt:'先点「留空」，再点亮着的空格。正式舞会里，× 不必画满。',
+    art:lessonIntroGrid(wardrobe,lesson.id)
+  };
+  if(lesson.id==='across-garden')return {
+    title:'每只小兔，都有一位舞伴',
+    copy:'上下左右，只能挨着一位舞伴。隔着分区线也能作伴，斜角碰到没关系。',
+    prompt:'先给 A 区的空位画 ×，再请隔壁的小兔来作伴。',
+    art:lessonIntroGrid(wardrobe,lesson.id)
+  };
+  throw new RangeError(`Unknown tutorial introduction: ${lesson.id}`);
+}
+
 /* ./progress.mjs */
 
 
@@ -5583,9 +5684,11 @@ function restoreProgress(raw) {
   // from a partial save; an explicit lower unlocked value still bounds it.
   const unlocked = progressStage(progressOwn(tutorial, 'unlocked'), requestedStep);
   const step = Math.min(requestedStep, unlocked);
+  const lessonIds = new Set(LESSONS.map(lesson => lesson.id));
+  const introduced = [...new Set(progressItems(progressOwn(tutorial, 'introduced')).filter(id => lessonIds.has(id)))];
   const savedLessons = progressRecord(progressOwn(tutorial, 'saves'));
   const lessonSaves = Object.fromEntries(LESSONS.map(lesson => [lesson.id, progressLessonBoard(lesson, progressOwn(savedLessons, lesson.id))]));
-  return {version: 3, levelId, index, completed, saves, archived, onboarding: {step, unlocked, saves: lessonSaves}};
+  return {version: 3, levelId, index, completed, saves, archived, onboarding: {step, unlocked, introduced, saves: lessonSaves}};
 }
 
 /** Save one board into its own branch while preserving the other branch. */
@@ -5603,6 +5706,7 @@ function saveBoard(progress, levelId, dancers, marks, isLesson = false) {
 }
 
 /* ./app.mjs */
+
 
 
 
@@ -5724,12 +5828,35 @@ function renderSound(){
 }
 function toggleSound(){soundOn=!soundOn;if(!vipSession){try{localStorage.setItem(SOUND_KEY,soundOn?'on':'off');}catch{}}renderSound();if(soundOn)cue('place');}
 function closeDialogs(){document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());}
+function maybeOpenLessonIntro(){
+  const lesson=currentLesson();
+  if(screen!=='play'||!lesson||onboarding.introduced.includes(lesson.id))return;
+  const intro=lessonIntroContent(lesson,wardrobe);
+  setText('lesson-intro-step',`第一次舞会 · ${onboarding.step+1} / ${LESSONS.length}`);
+  setText('lesson-intro-title',intro.title);setText('lesson-intro-copy',intro.copy);
+  setText('lesson-intro-prompt',intro.prompt);$('lesson-intro-art').innerHTML=intro.art;
+  $('lesson-intro-dialog').showModal();
+  $('lesson-intro-start').focus({preventScroll:true});
+}
+function startLessonPractice(){
+  const lesson=currentLesson();
+  if(screen!=='play'||!lesson||!$('lesson-intro-dialog').open)return;
+  onboarding.introduced=[...new Set([...onboarding.introduced,lesson.id])];save();
+  $('lesson-intro-dialog').close();
+  const view=lessonView();
+  const target=view.complete?$('lesson-next'):view.action==='mark'?$('mark-mode'):$('board').querySelector(`[data-cell="${view.focusCells[0]}"]`);
+  target?.focus({preventScroll:true});
+}
+function leaveLessonIntro(){
+  if(!$('lesson-intro-dialog').open)return;
+  save();showScreen('home');
+}
 function showScreen(next){
   closeDialogs();screen=next;document.body.dataset.screen=screen;
   vipTapCount=0;vipLastTap=0;renderVip();
   for(const id of ['home','play','map','album','wardrobe'])$(`${id}-screen`).hidden=id!==screen;
   if(screen==='home')renderHome();
-  if(screen==='play')render();
+  if(screen==='play'){render();maybeOpenLessonIntro();}
   if(screen==='map')renderMap();
   if(screen==='album')renderAlbum();
   if(screen==='wardrobe'){renderWardrobe();requestAnimationFrame(fitWardrobe);}
@@ -6264,6 +6391,8 @@ $('map-continue').onclick=()=>chooseLevel(journeyDestination().number-1);
 $('lesson-path').addEventListener('click',event=>{const button=event.target.closest('[data-lesson]');if(button&&!button.disabled)chooseLesson(Number(button.dataset.lesson));});
 $('lesson-skip').onclick=()=>{onboarding.unlocked=LESSONS.length;chooseLesson(LESSONS.length);};
 $('lesson-next').onclick=()=>{if(!lessonView()?.complete)return;onboarding.unlocked=Math.max(onboarding.unlocked,onboarding.step+1);chooseLesson(onboarding.step+1);};
+$('lesson-intro-start').onclick=startLessonPractice;$('lesson-intro-home').onclick=leaveLessonIntro;
+$('lesson-intro-dialog').addEventListener('cancel',event=>{event.preventDefault();leaveLessonIntro();});
 $('place-mode').onclick=()=>setMode('place');$('mark-mode').onclick=()=>setMode('mark');$('undo').onclick=undo;
 $('pause-open').onclick=()=>{renderSound();$('pause-dialog').showModal();};
 $('pause-close').onclick=()=>$('pause-dialog').close();$('pause-resume').onclick=()=>$('pause-dialog').close();
@@ -6280,6 +6409,7 @@ $('result-album').onclick=()=>{save();albumReturn='map';mapReturn='home';mapChap
 $('result-wardrobe').onclick=()=>{const bunny=freshWardrobeRewards.bunnies[0],accessory=freshWardrobeRewards.accessories[0];if(bunny)openWardrobeReward('bunny',bunny.variant);else if(accessory)openWardrobeReward('accessory',accessory.id);};
 $('win-wardrobe-rewards').addEventListener('click',event=>{const bunny=event.target.closest('[data-reward-bunny]');if(bunny){openWardrobeReward('bunny',bunny.dataset.rewardBunny);return;}const accessory=event.target.closest('[data-reward-accessory]');if(accessory)openWardrobeReward('accessory',accessory.dataset.rewardAccessory);});
 document.addEventListener('keydown',event=>{
+  if($('lesson-intro-dialog').open){if(event.key==='Escape'){event.preventDefault();leaveLessonIntro();}return;}
   if(screen!=='play'||document.querySelector('dialog[open]')||event.altKey||event.target.closest('input,textarea,select'))return;
   if(event.key==='Escape'){event.preventDefault();$('pause-open').click();}
   if(event.key.toLowerCase()==='m'&&!event.ctrlKey&&!event.metaKey)setMode(mode==='place'?'mark':'place');
@@ -6291,7 +6421,7 @@ for(const [id,icon]of Object.entries({'open-map':'map','open-album':'album','hom
 $('open-wardrobe').querySelector('.icon').innerHTML=gameIcon('wardrobe');
 $('wardrobe-tab-bunnies').querySelector('.icon').innerHTML=gameIcon('bunny');$('wardrobe-tab-accessories').querySelector('.icon').innerHTML=gameIcon('wardrobe');
 $('wardrobe-room-art').innerHTML=wardrobeRoomSvg().replace('<svg','<svg width="560" height="550"');
-$('coach-bunny').innerHTML=hostOwlSvg();$('hint-host-art').innerHTML=hostOwlSvg();saveWardrobe();
+$('coach-bunny').innerHTML=hostOwlSvg();$('hint-host-art').innerHTML=hostOwlSvg();$('lesson-intro-owl').innerHTML=hostOwlSvg();saveWardrobe();
 readBoard();renderHome();renderSound();renderVip();
 new ResizeObserver(fitBoard).observe($('board-area'));new ResizeObserver(fitWardrobe).observe($('wardrobe-dressing'));window.addEventListener('resize',()=>{fitBoard();fitWardrobe();requestAnimationFrame(keepJourneyInView);});
 
