@@ -996,13 +996,6 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
 .wardrobe-tabs button[aria-selected="true"] { background: #fdf6df; border-color: #bdac85; color: #727e56; box-shadow: inset 0 2px #fffbed, 0 4px #b6a47e; }
 .wardrobe-tabs button:not(:disabled):active { transform: translateY(2px); }
 .wardrobe-selection-note { flex: 0 0 auto; margin: 13px 8px 7px; text-align: center; color: #9a896a; font-size: 11px; line-height: 1.6; }
-.wardrobe-bunny-picker { display: grid; flex: 0 0 auto; grid-auto-flow: column; grid-auto-columns: minmax(64px, 1fr); gap: 8px; padding: 0 9px 9px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: #bdab87 #e6d5b4; scroll-snap-type: x proximity; }
-.wardrobe-bunny-picker[hidden] { display: none; }
-.wardrobe-bunny-picker > button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-width: 0; min-height: 70px; padding: 5px 3px; border: 2px solid #d3c2a1; border-radius: 13px; color: #9a896d; background: #f7efd9; box-shadow: inset 0 2px #fff8e9, 0 2px #c8b38e; scroll-snap-align: start; }
-.wardrobe-bunny-picker > button > span { display: block; flex: 0 0 auto; width: 31px; height: 38px; }
-.wardrobe-bunny-picker > button > span > svg { display: block; width: 100%; height: 100%; }
-.wardrobe-bunny-picker > button > strong { font-size: 10px; line-height: 1.4; letter-spacing: .5px; }
-.wardrobe-bunny-picker > button[aria-pressed="true"] { border-color: #b5a0be; color: #8a7197; background: #efe5f0; box-shadow: inset 0 2px #fff7ff, 0 2px #bda5c7; }
 .wardrobe-choices { flex: 1 1 0; min-width: 0; min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior-y: contain; scrollbar-width: thin; scrollbar-color: #bdab87 #e6d5b4; padding: 7px 9px 16px; }
 .wardrobe-panel { min-height: 100%; }
 .wardrobe-furs, .wardrobe-accessories { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(143px, 1fr); gap: 19px 13px; min-height: 100%; padding: 0 2px 4px; }
@@ -1031,8 +1024,8 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
 .fur-choice[aria-pressed="true"] { border-color: #bca8c8; background: #f0e6f2; box-shadow: inset 0 2px #fff6ff; }
 .fur-choice[aria-pressed="true"] > strong { color: #8c7497; }
 .fur-choice[aria-pressed="true"] > .fur-action { color: #9676a4; }
-.fur-choice:active, .fur-ticket:active, .accessory-choice:active, .wardrobe-bunny-picker > button:active { transform: translateY(2px); }
-.fur-choice:focus-visible, .fur-ticket:focus-visible, .wardrobe-bunny-picker > button:focus-visible { outline: 3px solid #a387b1; outline-offset: 2px; }
+.fur-choice:active, .fur-ticket:active, .accessory-choice:active { transform: translateY(2px); }
+.fur-choice:focus-visible, .fur-ticket:focus-visible { outline: 3px solid #a387b1; outline-offset: 2px; }
 .accessory-picture { display: grid; place-items: center; width: 106px; max-width: 90%; height: 84px; border-radius: 50%; background: #eee2c845; }
 .accessory-picture > svg { width: 100%; height: 100%; }
 .accessory-copy { position: relative; display: block; text-align: center; }
@@ -1069,10 +1062,6 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
   .wardrobe-tabs button { min-height: 44px; padding: 5px 8px; font-size: 14px; gap: 6px; border-radius: 12px 12px 8px 8px; }
   .wardrobe-tabs .icon { width: 19px; height: 22px; }
   .wardrobe-selection-note { margin: 8px 3px 3px; font-size: 10px; }
-  .wardrobe-bunny-picker { grid-auto-columns: minmax(58px, 1fr); gap: 6px; padding: 3px 8px 7px; }
-  .wardrobe-bunny-picker > button { min-height: 58px; padding: 4px 2px; gap: 2px; border-radius: 11px; }
-  .wardrobe-bunny-picker > button > span { width: 25px; height: 31px; }
-  .wardrobe-bunny-picker > button > strong { font-size: 9px; }
   .wardrobe-choices { padding: 6px 8px 13px; }
   .wardrobe-furs, .wardrobe-accessories { gap: 16px 11px; }
   .wardrobe-accessories { grid-auto-rows: minmax(115px, 1fr); }
@@ -1102,9 +1091,6 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
   .wardrobe-cabinet { padding-top: 6px; }
   .wardrobe-tabs button { min-height: 44px; }
   .wardrobe-selection-note { font-size: 9px; margin-top: 7px; }
-  .wardrobe-bunny-picker { padding-top: 2px; padding-bottom: 5px; }
-  .wardrobe-bunny-picker > button { min-height: 54px; }
-  .wardrobe-bunny-picker > button > span { width: 22px; height: 27px; }
   .cabinet-drawer { display: none; }
   .wardrobe-footer { min-height: 60px; }
   #wardrobe-done { min-width: 103px; font-size: 11px; }
@@ -1118,9 +1104,6 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
   .fur-choice::before { left: 5px; top: 6px; width: 59px; height: 62px; }
   .fur-choice > strong { align-self: end; margin-top: 0; }
   .fur-action { align-self: start; }
-  .wardrobe-bunny-picker { padding-bottom: 7px; }
-  .wardrobe-bunny-picker > button { flex-direction: row; min-height: 46px; gap: 6px; padding: 4px 3px; }
-  .wardrobe-bunny-picker > button > span { width: 27px; height: 33px; }
   .wardrobe-accessories { grid-auto-rows: minmax(112px, 1fr); }
   .accessory-choice { min-height: 112px; padding: 6px 7px 8px; }
   .accessory-picture { height: 59px; }
@@ -1142,10 +1125,6 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
   .wardrobe-tabs button { min-height: 44px; padding: 4px 8px; font-size: 13px; gap: 5px; }
   .wardrobe-tabs .icon { width: 18px; height: 21px; }
   .wardrobe-selection-note { margin: 6px 0 1px; font-size: 9px; }
-  .wardrobe-bunny-picker { grid-auto-columns: minmax(58px, 1fr); gap: 5px; padding: 4px 7px 5px; }
-  .wardrobe-bunny-picker > button { flex-direction: row; min-height: 44px; gap: 4px; padding: 4px 2px; border-radius: 10px; }
-  .wardrobe-bunny-picker > button > span { width: 24px; height: 30px; }
-  .wardrobe-bunny-picker > button > strong { font-size: 9px; letter-spacing: 0; }
   .wardrobe-choices { padding: 6px 7px 12px; }
   .wardrobe-furs, .wardrobe-accessories { gap: 17px 10px; }
   .wardrobe-accessories { grid-auto-rows: minmax(108px, 1fr); }
@@ -1173,10 +1152,6 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
   .wardrobe-tabs button { min-height: 36px; padding: 3px 5px; font-size: 12px; }
   .wardrobe-tabs .icon { width: 17px; height: 20px; }
   .wardrobe-selection-note { margin-top: 3px; margin-bottom: 0; font-size: 8px; line-height: 1.4; }
-  .wardrobe-bunny-picker { gap: 4px; padding: 3px 5px 4px; }
-  .wardrobe-bunny-picker > button { min-height: 44px; gap: 3px; padding: 3px 1px; border-width: 1px; border-radius: 8px; }
-  .wardrobe-bunny-picker > button > span { width: 22px; height: 27px; }
-  .wardrobe-bunny-picker > button > strong { font-size: 8px; }
   .wardrobe-choices { padding: 6px 5px 5px; }
   .wardrobe-furs { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .fur-card { display: grid; grid-template-columns: minmax(0, 1fr) 69px; min-height: 68px; gap: 6px; padding: 5px; border-radius: 11px; }
@@ -1532,7 +1507,6 @@ body[data-vip="true"] .game-shell { flex: 1 1 0; min-height: 0; height: auto; }
         <div class="wardrobe-cabinet">
           <div class="wardrobe-tabs" id="wardrobe-tabs" role="tablist" aria-label="衣橱分类"><button id="wardrobe-tab-bunnies" type="button" role="tab" aria-selected="true" aria-controls="wardrobe-bunnies-panel"><span class="icon" aria-hidden="true"></span>小兔</button><button id="wardrobe-tab-accessories" type="button" role="tab" aria-selected="false" aria-controls="wardrobe-accessories-panel" tabindex="-1"><span class="icon" aria-hidden="true"></span>配饰</button></div>
           <p id="wardrobe-selection-note" class="wardrobe-selection-note">点小兔打扮 · 下方选是否赴约</p>
-          <div id="wardrobe-bunny-picker" class="wardrobe-bunny-picker" role="group" aria-label="选择要打扮的小兔" hidden></div>
           <div class="wardrobe-choices"><section id="wardrobe-bunnies-panel" class="wardrobe-panel" role="tabpanel" aria-labelledby="wardrobe-tab-bunnies"><div id="wardrobe-furs" class="wardrobe-furs" role="group" aria-label="给小兔打扮，选择是否赴约"></div></section><section id="wardrobe-accessories-panel" class="wardrobe-panel" role="tabpanel" aria-labelledby="wardrobe-tab-accessories" hidden><div id="wardrobe-slots" class="wardrobe-slots" role="group" aria-label="分别搭配头饰和衣服"><button id="wardrobe-slot-head" type="button" aria-pressed="true" aria-controls="wardrobe-accessories">头饰</button><button id="wardrobe-slot-body" type="button" aria-pressed="false" aria-controls="wardrobe-accessories">衣服 · 随身物</button></div><div id="wardrobe-accessories" class="wardrobe-accessories" role="group" aria-label="选择头饰"></div></section></div>
           <div class="cabinet-drawer" aria-hidden="true"><span></span><span></span></div>
         </div>
@@ -5951,7 +5925,6 @@ function renderWardrobe(){
     const attending=wardrobe.variants.includes(item.variant);
     return `<div class="fur-card ${item.unlocked?'unlocked':'locked'}" style="--fur-swatch:${item.color}"><button class="fur-choice" type="button" data-fur="${item.variant}" aria-pressed="${wardrobePreviewVariant===item.variant}" aria-label="${item.unlocked?`给${item.name}打扮`:`看看${item.name}，${item.condition}后赴约`}"><span class="fur-portrait" aria-hidden="true">${animalSvg(item.variant,{outfit:wardrobeOutfit(wardrobe,item.variant)})}</span><strong>${item.name}</strong><span class="fur-action" aria-hidden="true">${item.unlocked?'打扮':'还在路上'}</span></button><button class="fur-ticket" type="button" data-guest="${item.variant}" aria-pressed="${attending}" ${item.unlocked?'':'disabled'} aria-label="${item.name}，${!item.unlocked?item.condition:attending?'已选出场，点击取消':'未选出场，点击加入'}">${!item.unlocked?`<span>${item.shortCondition}</span><small>${item.progressLabel}</small>`:`${attending?gameIcon('check'):''}${attending?'赴约':'休息'}`}</button>${item.variant>=4?`<button class="wardrobe-item-info" type="button" data-info-bunny="${item.variant}" aria-label="了解${item.name}的来历"><span aria-hidden="true">?</span></button>`:''}</div>`;
   }).join('');
-  $('wardrobe-bunny-picker').innerHTML=bunnies.filter(item=>item.unlocked).map(item=>`<button type="button" data-dress-bunny="${item.variant}" aria-pressed="${wardrobePreviewVariant===item.variant}" aria-label="给${item.name}打扮"><span aria-hidden="true">${animalSvg(item.variant,{outfit:wardrobeOutfit(wardrobe,item.variant)})}</span><strong>${item.shortName}</strong></button>`).join('');
   const lock='<svg viewBox="0 0 20 22" aria-hidden="true"><path d="M5 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="2" y="9" width="16" height="12" rx="4" fill="currentColor"/><circle cx="10" cy="14" r="1.4" fill="#fff8e8"/><path d="M10 14v3" stroke="#fff8e8" stroke-width="1.5"/></svg>';
   const emptyHeadIcon='<svg viewBox="0 0 80 64" aria-hidden="true"><g fill="none" stroke="#a99a87" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M34 19c0-11 13-10 13-2c0 5-7 6-7 10l-22 15q-3 3 1 4h42q4-1 1-4L40 27"/></g></svg>';
   const choices=accessories.filter(item=>item.id==='none'||item.slot===wardrobeSlot).map(item=>item.id==='none'&&wardrobeSlot==='head'?{...item,title:'不戴头饰'}:item);
@@ -5971,7 +5944,6 @@ function renderWardrobeTabs(){
     $(`wardrobe-tab-${tab}`).setAttribute('aria-selected',String(active));
     $(`wardrobe-tab-${tab}`).setAttribute('tabindex',active?'0':'-1');
   }
-  $('wardrobe-bunny-picker').hidden=wardrobeTab!=='accessories';
   setText('wardrobe-selection-note',wardrobeTab==='bunnies'?`点小兔打扮 · 已结识 ${bunnyState(completed,wardrobe).filter(item=>item.unlocked).length} / ${BUNNY_LOOKS.length}`:`给${BUNNIES[wardrobePreviewVariant]}挑配饰 · 已有 ${accessoryState(completed,wardrobe).filter(item=>item.unlocked).length} / ${ACCESSORIES.length}`);
 }
 function setWardrobeTab(tab){
@@ -5993,7 +5965,7 @@ function selectWardrobeBunny(variant){
   const target=bunnyState(completed,wardrobe).find(item=>item.variant===variant);if(!target)return;
   wardrobePreviewVariant=variant;wardrobePreviewOutfit=wardrobeOutfit(wardrobe,variant);wardrobeNotice='';wardrobeTab=target.unlocked?'accessories':'bunnies';
   renderWardrobe();
-  if(target.unlocked){document.querySelector('.wardrobe-choices')?.scrollTo?.(0,0);const button=$('wardrobe-bunny-picker').querySelector(`[data-dress-bunny="${variant}"]`);button?.focus({preventScroll:true});button?.scrollIntoView?.({block:'nearest',inline:'nearest'});}
+  if(target.unlocked){document.querySelector('.wardrobe-choices')?.scrollTo?.(0,0);$('wardrobe-tab-accessories').focus({preventScroll:true});}
   else $('wardrobe-furs').querySelector(`[data-fur="${variant}"]`)?.focus({preventScroll:true});
 }
 function toggleWardrobeGuest(variant){
@@ -6260,7 +6232,6 @@ $('wardrobe-tab-bunnies').onclick=()=>setWardrobeTab('bunnies');$('wardrobe-tab-
 $('wardrobe-tabs').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();setWardrobeTab(event.key==='Home'?'bunnies':event.key==='End'?'accessories':wardrobeTab==='bunnies'?'accessories':'bunnies');$(`wardrobe-tab-${wardrobeTab}`).focus();});
 $('wardrobe-slot-head').onclick=()=>setWardrobeSlot('head');$('wardrobe-slot-body').onclick=()=>setWardrobeSlot('body');
 $('wardrobe-furs').addEventListener('click',event=>{const info=event.target.closest('[data-info-bunny]');if(info){openWardrobeDetail('bunny',info.dataset.infoBunny);return;}const guest=event.target.closest('[data-guest]');if(guest){toggleWardrobeGuest(Number(guest.dataset.guest));return;}const button=event.target.closest('[data-fur]');if(button)selectWardrobeBunny(Number(button.dataset.fur));});
-$('wardrobe-bunny-picker').addEventListener('click',event=>{const button=event.target.closest('[data-dress-bunny]');if(button)selectWardrobeBunny(Number(button.dataset.dressBunny));});
 $('wardrobe-accessories').addEventListener('click',event=>{const info=event.target.closest('[data-info-accessory]');if(info){openWardrobeDetail('accessory',info.dataset.infoAccessory);return;}const button=event.target.closest('[data-accessory]');if(button)chooseWardrobeAccessory(button.dataset.accessory);});
 $('wardrobe-detail-close').onclick=()=>$('wardrobe-detail-dialog').close();$('wardrobe-detail-done').onclick=()=>$('wardrobe-detail-dialog').close();
 $('wardrobe-detail-dialog').addEventListener('close',()=>wardrobeDetailFocus?.focus({preventScroll:true}));
