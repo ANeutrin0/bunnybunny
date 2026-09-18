@@ -131,6 +131,9 @@ h1, h2, h3, p { margin: 0; }
 .play-screen { display: flex; flex-direction: column; gap: 10px; padding-top: max(14px, env(safe-area-inset-top)); }
 .play-hud { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 10px; min-height: 58px; }
 .hud-copy { min-width: 0; flex: 1; text-align: center; }
+.play-help-button { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: 5px; min-width: 66px; min-height: 44px; padding: 8px 10px; border: 1px solid #dce2d0; border-radius: 16px; background: #fffcf4; color: #657653; box-shadow: 0 2px 0 #e2e6d8; font-size: 12px; font-weight: 700; }
+.play-help-button .icon { width: 18px; height: 18px; }
+.play-help-button .icon > svg { display: block; width: 100%; height: 100%; }
 #hud-label { font-size: 8px; letter-spacing: 1.4px; color: #a0a18e; }
 #level-title { font-size: 21px; line-height: 1.35; letter-spacing: .5px; font-weight: 750; color: #57634d; margin: 2px 0; }
 .level-note { color: #9a9e89; font-size: 10px; line-height: 1.5; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
@@ -987,7 +990,7 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
 .lesson-intro-art > .rule-example-art { height: auto; max-height: none; }
 .game-dialog.help-dialog { width: min(calc(100% - 28px), 530px); max-width: 530px; padding: 25px 22px 18px; }
 .help-dialog[open] { display: flex; flex-direction: column; }
-.help-dialog > .eyebrow, .help-dialog > h2, .help-dialog > .primary-button { flex-shrink: 0; }
+.help-dialog > .game-guide-host, .help-dialog > h2, .game-guide-navigation { flex-shrink: 0; }
 .help-dialog > h2 { margin: 9px 24px 5px 0; font-size: 22px; color: #61764f; }
 .help-dialog .help-content { min-height: 0; margin: 9px 0 15px; padding-right: 6px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #cbd5bb transparent; color: #657456; }
 .help-dialog .help-rule { padding: 9px 0; }
@@ -1003,6 +1006,42 @@ body[data-board-size="large"] .region-chip > small { font-size: 8px; }
 .rules-examples > svg { max-width: 310px; margin: 8px auto; }
 .help-content .rules-controls { margin-bottom: 0; font-size: 11px; line-height: 1.8; }
 .rules-controls > strong { display: block; margin-bottom: 4px; color: #657951; font-size: 12px; }
+.game-guide-host { display: flex; align-items: center; gap: 10px; padding-right: 34px; }
+#help-owl { flex: 0 0 37px; width: 37px; height: 37px; }
+#help-owl > svg { display: block; width: 100%; height: 100%; }
+.game-guide-host p { color: #657653; font-size: 11px; font-weight: 700; line-height: 1.5; }
+#help-step { display: block; margin-top: 2px; color: #7b876b; font-size: 10px; line-height: 1.5; }
+.game-guide-navigation { padding-top: 3px; }
+.game-guide-secondary { display: flex; justify-content: center; gap: 24px; }
+.game-guide-secondary .text-button { min-height: 38px; padding: 7px 10px; font-size: 11px; color: #728160; }
+.game-guide-secondary:not(:has(button:not([hidden]))) { display: none; }
+.help-content .game-guide-welcome { margin-top: 0; font-size: 13px; color: #61734f; }
+.help-content .game-guide-lead { font-size: 14px; line-height: 1.85; }
+.help-dialog .help-content strong { color: #5e704d; }
+.game-guide-figure { margin: 16px 0; padding: 10px 8px 12px; border: 1px solid #e3e3ce; border-radius: 19px; background: #f7f5e8; }
+.game-guide-art { display: block; width: 100%; height: auto; max-width: 390px; margin: auto; }
+.game-guide-figure figcaption { text-align: center; font-size: 11px; color: #6c7a5b; line-height: 1.8; }
+.help-content .game-guide-note { font-size: 12px; color: #667653; line-height: 1.85; }
+.game-guide-note > strong { display: block; margin-bottom: 2px; }
+.help-content .game-guide-fineprint { margin-bottom: 0; font-size: 11px; color: #7c886e; }
+.game-guide-controls-art { max-width: 340px; }
+.help-dialog .game-guide-tools { margin-top: 14px; font-size: 12px; }
+@media (max-width: 380px) {
+  .game-dialog.help-dialog { padding: 19px 17px 12px; }
+  .help-dialog > h2 { font-size: 21px; margin-top: 12px; }
+  .play-help-button { min-width: 62px; padding: 8px; }
+}
+@media (max-height: 560px) {
+  .game-dialog.help-dialog { max-height: calc(100dvh - 20px); padding-top: 13px; padding-bottom: 10px; }
+  .help-dialog > h2 { margin-top: 6px; font-size: 19px; }
+  .game-guide-host { gap: 8px; }
+  #help-owl { flex-basis: 30px; width: 30px; height: 30px; }
+  .help-dialog .help-content { margin-top: 5px; margin-bottom: 9px; }
+  .game-guide-navigation { display: flex; align-items: center; gap: 10px; }
+  #help-start { flex: 1; min-width: 0; min-height: 42px; padding: 10px; }
+  .game-guide-secondary { flex: 0 0 auto; gap: 6px; }
+  .game-guide-secondary .text-button { padding: 8px 5px; }
+}
 @media (max-width: 380px) {
   .game-dialog.lesson-intro-dialog { padding: 18px 18px 12px; }
   .lesson-intro-dialog h2 { margin-top: 13px; font-size: 21px; }
@@ -1513,7 +1552,7 @@ body[data-vip="true"] .game-shell { flex: 1 1 0; min-height: 0; height: auto; }
       <header class="play-hud">
         <button id="pause-open" class="icon-button" type="button" aria-label="暂停舞会"><span class="icon pause-icon" aria-hidden="true">Ⅱ</span></button>
         <div class="hud-copy"><p id="hud-label" class="eyebrow">第一场舞会</p><h2 id="level-title">花园初见</h2><p id="level-note" class="level-note"></p></div>
-        <button id="help-open" class="icon-button" type="button" aria-label="查看玩法"><span class="icon" aria-hidden="true">?</span></button>
+        <button id="help-open" class="play-help-button" type="button" aria-label="玩法，查看完整游戏引导" aria-haspopup="dialog" aria-controls="help-dialog"><span class="icon" aria-hidden="true">?</span><span>玩法</span></button>
       </header>
       <div id="lesson-dots" class="lesson-dots" hidden aria-label="教学进度"></div>
       <section id="lesson-coach" class="lesson-coach" hidden aria-labelledby="lesson-title">
@@ -1588,15 +1627,13 @@ body[data-vip="true"] .game-shell { flex: 1 1 0; min-height: 0; height: auto; }
     <div class="vip-panel-actions"><button id="vip-complete" class="primary-button" type="button" hidden>完成当前关</button><div class="vip-panel-destinations"><button id="vip-wardrobe" class="secondary-button" type="button">去衣橱看看</button><button id="vip-map" class="secondary-button" type="button">舞会地图</button></div><button id="vip-exit" class="text-button vip-exit" type="button">退出展示，回到原进度</button></div>
   </dialog>
   <dialog id="pause-dialog" class="game-dialog pause-dialog" aria-labelledby="pause-title"><button id="pause-close" class="dialog-close icon-button" type="button" aria-label="关闭暂停菜单"><span class="icon" aria-hidden="true">×</span></button><p class="eyebrow">TAKE YOUR TIME</p><h2 id="pause-title">休息一下。</h2><p class="dialog-copy">小兔会在这里，等你回来。</p><div class="pause-actions"><button id="pause-resume" class="primary-button" type="button">继续舞会 →</button><button id="reset" class="secondary-button" type="button"><span class="icon" aria-hidden="true">↻</span><span>重新开始这一关</span></button><button id="pause-sound" class="secondary-button" type="button" aria-pressed="true"><span class="icon" aria-hidden="true">♪</span><span>声音开启</span></button><button id="pause-wardrobe" class="secondary-button" type="button">小兔衣橱</button><button id="pause-map" class="secondary-button" type="button">舞会地图</button><button id="pause-home" class="text-button" type="button">回到首页</button></div></dialog>
-  <dialog id="lesson-intro-dialog" class="game-dialog lesson-intro-dialog" aria-labelledby="lesson-intro-title" aria-describedby="lesson-intro-copy lesson-intro-prompt">
-    <header class="lesson-intro-host"><span id="lesson-intro-owl" aria-hidden="true"></span><div><p>舞会管家 · 咕咕</p><span id="lesson-intro-step">出发前的小练习 · 1 / 3</span></div><span class="lesson-intro-flower" aria-hidden="true">✿</span></header>
-    <h2 id="lesson-intro-title">这一小片，只请两只</h2>
-    <p id="lesson-intro-copy" class="lesson-intro-copy"></p>
-    <div id="lesson-intro-art" class="lesson-intro-art" aria-hidden="true"></div>
-    <p id="lesson-intro-prompt" class="lesson-intro-prompt"></p>
-    <div class="lesson-intro-actions"><button id="lesson-intro-start" class="primary-button" type="button">试试看 →</button><div class="lesson-intro-secondary"><button id="lesson-intro-prev" class="text-button" type="button" hidden>上一页</button><button id="lesson-intro-home" class="text-button" type="button">先回首页</button></div></div>
+  <dialog id="help-dialog" class="game-dialog help-dialog" aria-labelledby="help-title" aria-describedby="help-step">
+    <button id="help-close" class="dialog-close icon-button" type="button" aria-label="关闭玩法"><span class="icon" aria-hidden="true">×</span></button>
+    <header class="game-guide-host"><span id="help-owl" aria-hidden="true"></span><div><p>咕咕 · 舞会管家</p><span id="help-step">玩法引导 · 1 / 3</span></div></header>
+    <h2 id="help-title" tabindex="-1">帮小兔安排舞会的位置</h2>
+    <div id="help-content" class="help-content" role="region" aria-label="完整游戏引导" tabindex="0"></div>
+    <footer class="game-guide-navigation"><button id="help-start" class="primary-button" type="button">继续</button><div class="game-guide-secondary"><button id="help-prev" class="text-button" type="button" hidden>上一页</button><button id="help-skip" class="text-button" type="button" hidden>跳过引导</button></div></footer>
   </dialog>
-  <dialog id="help-dialog" class="game-dialog help-dialog" aria-labelledby="help-title"><button id="help-close" class="dialog-close icon-button" type="button" aria-label="关闭玩法"><span class="icon" aria-hidden="true">×</span></button><p class="eyebrow">EVERY BUNNY NEEDS A BUDDY</p><h2 id="help-title">两位客人，一支舞。</h2><div id="help-content" class="help-content" role="region" aria-label="完整玩法说明" tabindex="0"></div><button id="help-start" class="primary-button" type="button">明白啦</button></dialog>
   <dialog id="hint-dialog" class="game-dialog hint-dialog" data-stage="0" aria-labelledby="hint-title" aria-describedby="hint-stage-label">
     <button id="hint-close" class="dialog-close icon-button" type="button" aria-label="关闭提示"><span class="icon" aria-hidden="true">×</span></button>
     <div class="hint-host-header"><span id="hint-host-art" class="hint-host-art" aria-hidden="true"></span><div><p class="hint-host-label">舞会管家</p><h2 id="hint-title">咕咕</h2></div></div>
@@ -5641,43 +5678,89 @@ function ruleExampleSvg(kind,wardrobe) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 ${example.height}" aria-hidden="true" focusable="false" class="rule-example-art" data-rule-example="${kind}">${example.art}</svg>`;
 }
 
-/* ./lesson-intro.mjs */
-function lessonIntroPages(lesson, wardrobe) {
-  if(lesson.id==='two-guests')return [{
-    title:'每区恰好两只',
-    copy:'粗边框圈起的是一个区域。不管区域有几格，都要放恰好两只小兔，其余格子留空。',
-    prompt:'这次有三格，试着请来两只。少一只、多一只都不行。',
-    art:ruleExampleSvg('quota',wardrobe)
-  }];
-  if(lesson.id==='empty-notes')return [{
-    title:'× 是留空的笔记',
-    copy:'这一区已经有两只，其他格子就不再放兔子。画 × 可以帮你记住空位，不画也能过关。',
-    prompt:'选「留空」，给任意一个空格画 ×，学会后就能继续。再点一次可以擦掉。',
-    art:ruleExampleSvg('notes',wardrobe)
-  }];
-  if(lesson.id==='across-garden')return [{
-    title:'每只恰好一位舞伴',
-    copy:'看每只小兔的上下左右，必须恰好挨着一只小兔。没有邻居会落单，挨着两只也不行。',
-    prompt:'左右、上下挨着的两只是舞伴。斜角不算相邻，不能用来配对。',
-    art:ruleExampleSvg('neighbors',wardrobe)
-  },{
-    title:'同区两只，不一定是一对',
-    copy:'区域只管数量，舞伴看上下左右是否相邻。两只小兔隔着分区线，也能配成一对。',
-    prompt:'图中 A、B 区各有两只，却是上下各配成一对。已经成对的不同组，斜角碰到没关系。',
-    art:ruleExampleSvg('crossing',wardrobe)
-  }];
-  throw new RangeError(`Unknown tutorial introduction: ${lesson.id}`);
+/* ./game-guide.mjs */
+const GAME_GUIDE_VERSION=1;
+
+function gameGuideRabbit(wardrobe,seed,x,y,size) {
+  const variant=wardrobeVariant(wardrobe,seed);
+  return animalSvg(variant,{outfit:wardrobeOutfit(wardrobe,variant)})
+    .replace('<svg',`<svg x="${x+size*.13}" y="${y+size*.035}" width="${size*.74}" height="${size*.91}"`);
 }
-function rulesOverviewMarkup(wardrobe) {
-  return `<p class="rules-goal">同时满足下面两条，就会自动过关。</p>
-    <div class="help-rule"><span>1</span><div><h3>每区恰好两只</h3><p>粗边框圈起一个区域。区域无论大小，都要放两只，其余格子留空。</p></div></div>
-    <div class="help-rule"><span>2</span><div><h3>每只恰好一位舞伴</h3><p>每只小兔的上下左右，必须恰好挨着一只。没有邻居不行，挨着两只也不行。斜角不算舞伴。</p></div></div>
-    <section class="rules-crossing"><h3>舞伴可以跨区</h3><p>同区的两只不一定互相配对；图中每区两只，同时每只都只有一位相邻舞伴。</p><div class="rules-complete-art">${ruleExampleSvg('crossing',wardrobe)}</div><p>不同对不能上下左右贴在一起，否则就会多出邻居。两对斜角碰到没关系。</p></section>
-    <details class="rules-examples"><summary>看看相邻、斜角和三只相连的区别</summary>${ruleExampleSvg('neighbors',wardrobe)}</details>
-    <p class="rules-controls"><strong>怎么操作</strong>点空格放兔子，再点小兔收回；选「留空」画 ×，再点擦掉。× 是可选笔记，不必画满。兔子花色和配饰不影响配对。</p>`;
+
+function gameGuideText(x,y,label,{size=12,color='#705d4d',weight=600}={}) {
+  return `<text x="${x}" y="${y}" text-anchor="middle" fill="${color}" font-size="${size}" font-weight="${weight}" font-family="system-ui,-apple-system,'Segoe UI',sans-serif">${label}</text>`;
+}
+
+function gameGuideTile(x,y,size) {
+  return `<rect x="${x}" y="${y}" width="${size}" height="${size}" rx="7" fill="#f5f1e6" stroke="#b9c4a6" stroke-width="1.7"/>`;
+}
+
+function gameGuideArrow(x,y,{both=false}={}) {
+  return `<path d="M${x} ${y}h22m-6-5 6 5-6 5${both?`M${x+6} ${y-5}l-6 5 6 5`:''}" fill="none" stroke="#9bab87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+}
+
+function gameGuideBoard(x,y,wardrobe,complete) {
+  const size=34,width=size*3,height=size*2;
+  let art=`<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="7" fill="#e8eddc"/>
+    <path d="M${x} ${y+size}h${width}v${size-7}q0 7-7 7H${x+7}q-7 0-7-7Z" fill="#e9e0ee"/>
+    <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="7" fill="none" stroke="#899578" stroke-width="2.5"/>
+    <path d="M${x+size} ${y}v${height}m${size}-${height}v${height}" fill="none" stroke="#bfc4b5" stroke-width="1"/>
+    <path d="M${x} ${y+size}h${width}" fill="none" stroke="#899578" stroke-width="2.5"/>`;
+  if(complete)for(const col of [0,2]){
+    art+=`<rect x="${x+col*size+3}" y="${y+3}" width="${size-6}" height="${height-6}" rx="12" fill="#fffcef" fill-opacity=".32" stroke="#b59b6f" stroke-width="1.5"/>`;
+    for(let row=0;row<2;row++)art+=gameGuideRabbit(wardrobe,col+row,x+col*size,y+row*size,size);
+  }
+  return art;
+}
+
+function gameGuideGoalArt(wardrobe) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 148" role="img" aria-label="左边是两个区域的空棋盘，右边是安排好的棋盘：每区两只小兔，上下配成两对，中间的格子留空。" focusable="false" class="game-guide-art game-guide-goal-art">
+    ${gameGuideText(69,21,'开始时')}${gameGuideText(231,21,'安排好啦',{color:'#66835c'})}
+    ${gameGuideBoard(18,37,wardrobe,false)}${gameGuideArrow(139,71)}${gameGuideBoard(180,37,wardrobe,true)}
+    ${gameGuideText(69,130,'等你来放小兔',{size:11,weight:500})}${gameGuideText(231,130,'小兔成对，其余留空',{size:11,weight:500})}
+  </svg>`;
+}
+
+function gameGuideControlsArt(wardrobe) {
+  const size=42;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 128" role="img" aria-label="邀请模式：点空格放兔子，再点兔子收回。留空模式：点空格画叉，再点叉擦掉。" focusable="false" class="game-guide-art game-guide-controls-art">
+    ${gameGuideText(75,19,'邀请',{color:'#66835c'})}${gameGuideText(225,19,'留空',{color:'#66835c'})}
+    ${gameGuideTile(13,35,size)}${gameGuideTile(94,35,size)}${gameGuideRabbit(wardrobe,0,94,35,size)}${gameGuideArrow(64,56,{both:true})}
+    ${gameGuideTile(164,35,size)}${gameGuideTile(245,35,size)}${gameGuideArrow(215,56,{both:true})}
+    <path d="m258 48 16 16m0-16-16 16" fill="none" stroke="#9ba28c" stroke-width="2.8" stroke-linecap="round"/>
+    ${gameGuideText(75,101,'点一下放，再点收回',{size:11,weight:500})}${gameGuideText(225,101,'点一下画，再点擦掉',{size:11,weight:500})}
+    ${gameGuideText(150,123,'想改位置，随时都可以。',{size:11,color:'#84926f',weight:500})}
+  </svg>`;
+}
+
+/** The opening guide and the in-game rulebook intentionally share these pages. */
+function gameGuidePages(wardrobe) {
+  return [{
+    title:'帮小兔安排舞会',
+    markup:`<p class="game-guide-welcome">欢迎来舞会！一起帮小兔安排位置吧。</p>
+      <p class="game-guide-lead">小兔的位置由你来安排：<strong>哪些格子放小兔，哪些格子留空。</strong></p>
+      <figure class="game-guide-figure">${gameGuideGoalArt(wardrobe)}<figcaption>每格最多一只。满足下一页的两条规则，就会自动过关。</figcaption></figure>
+      <p class="game-guide-note">不用把棋盘填满。接下来看看，小兔们要怎样站才合适。</p>`
+  },{
+    title:'两条规则，一起满足',
+    markup:`<div class="help-rule"><span>1</span><div><h3>每个区域，恰好两只</h3><p>粗边框圈起来的是一个区域。不管区域有几格，都要放<strong>两只</strong>小兔，其余格子留空。</p></div></div>
+      <div class="help-rule"><span>2</span><div><h3>每只小兔，恰好一位舞伴</h3><p>看每只小兔的<strong>上下左右</strong>，必须恰好挨着一只小兔。不能落单，也不能挨着两只。</p></div></div>
+      <section class="rules-crossing game-guide-crossing"><h3>隔着分区线，也能作伴</h3><div class="rules-complete-art">${ruleExampleSvg('crossing',wardrobe)}</div><p>图里每区都有两只，上下配成了两对。<strong>同区的两只，不一定互相作伴。</strong></p></section>
+      <p class="game-guide-note"><strong>斜角不算舞伴，三只不能连在一起。</strong>不同的两对不能上下左右贴在一起，但可以只在斜角碰到。</p>
+      <details class="rules-examples game-guide-examples"><summary>看图分清：相邻、斜角和三只相连</summary>${ruleExampleSvg('neighbors',wardrobe)}</details>`
+  },{
+    title:'点格子，安排小兔',
+    markup:`<figure class="game-guide-figure">${gameGuideControlsArt(wardrobe)}</figure>
+      <div class="help-rule"><span>1</span><div><h3>选「邀请」，放小兔</h3><p>点空格放一只小兔，再点这只小兔就能收回。</p></div></div>
+      <div class="help-rule"><span>2</span><div><h3>选「留空」，画 ×</h3><p>点空格画 ×，再点擦掉。<strong>× 只是帮你记住空位，不画也能过关。</strong></p></div></div>
+      <p class="rules-controls game-guide-tools"><strong>放错了，随时能改</strong>「撤销」退回上一步；「清空」移除本关自己放的小兔和 ×，重新安排。教学里预先摆好的小兔会保留。</p>
+      <p class="game-guide-note"><strong>忘记规则时，点右上角「玩法」。</strong>这三页随时都能重看，关闭后继续当前棋盘。</p>
+      <p class="game-guide-fineprint">小兔的花色和饰品只负责好看，不影响配对。</p>`
+  }];
 }
 
 /* ./progress.mjs */
+
 
 
 
@@ -5795,11 +5878,12 @@ function restoreProgress(raw) {
   const step = Math.min(requestedStep, unlocked);
   const lessonIds = new Set(LESSONS.map(lesson => lesson.id));
   const introVersion = progressOwn(tutorial, 'introVersion') === TUTORIAL_RULES_VERSION ? TUTORIAL_RULES_VERSION : 0;
+  const guideVersion = progressOwn(tutorial, 'guideVersion') === GAME_GUIDE_VERSION ? GAME_GUIDE_VERSION : 0;
   // Revised explanations may be revisited without resetting any practice board.
   const introduced = introVersion ? [...new Set(progressItems(progressOwn(tutorial, 'introduced')).filter(id => lessonIds.has(id)))] : [];
   const savedLessons = progressRecord(progressOwn(tutorial, 'saves'));
   const lessonSaves = Object.fromEntries(LESSONS.map(lesson => [lesson.id, progressLessonBoard(lesson, progressOwn(savedLessons, lesson.id))]));
-  return {version: 3, levelId, index, completed, saves, archived, onboarding: {step, unlocked, introVersion, introduced, saves: lessonSaves}};
+  return {version: 3, levelId, index, completed, saves, archived, onboarding: {step, unlocked, introVersion, guideVersion, introduced, saves: lessonSaves}};
 }
 
 /** Save one board into its own branch while preserving the other branch. */
@@ -5849,7 +5933,7 @@ let wardrobeReturn='home',wardrobePreviewVariant=wardrobe.variants[0],wardrobePr
 let dancers=new Set(),marks=new Set(),history=[],mode='place',activeHint=null,hintStage=0,hintSignature='',statusMessage='',won=false;
 let renderedHint=null,renderedHintStage=-1;
 let screen='home',mapReturn='home',albumReturn='home',renderedPairs=new Set(),soundOn=true,audioContext=null;
-let lessonIntroPage=0,helpPracticePending=false;
+let helpPage=0,helpPages=[],helpPendingStart=null,helpReturnFocus=null;
 let mapChapter=Math.floor(index/10);
 let freshMementos=[];
 let freshWardrobeRewards={bunnies:[],accessories:[]};
@@ -5934,43 +6018,20 @@ function renderSound(){
   $('pause-sound').setAttribute('aria-pressed',String(soundOn));
 }
 function toggleSound(){soundOn=!soundOn;if(!vipSession){try{localStorage.setItem(SOUND_KEY,soundOn?'on':'off');}catch{}}renderSound();if(soundOn)cue('place');}
-function closeDialogs(){helpPracticePending=false;document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());}
-function renderLessonIntro(){
-  const pages=lessonIntroPages(currentLesson(),wardrobe),intro=pages[lessonIntroPage];
-  setText('lesson-intro-step',`第一次舞会 · ${onboarding.step+1} / ${LESSONS.length}${pages.length>1?` · 图解 ${lessonIntroPage+1} / ${pages.length}`:''}`);
-  setText('lesson-intro-title',intro.title);setText('lesson-intro-copy',intro.copy);
-  setText('lesson-intro-prompt',intro.prompt);$('lesson-intro-art').innerHTML=intro.art;
-  $('lesson-intro-prev').hidden=lessonIntroPage===0;
-  setText('lesson-intro-start',lessonIntroPage<pages.length-1?'继续':'试试看 →');
-  $('lesson-intro-dialog').scrollTop=0;
-}
-function maybeOpenLessonIntro(){
-  const lesson=currentLesson();
-  if(screen!=='play'||!lesson||onboarding.introduced.includes(lesson.id))return;
-  lessonIntroPage=0;renderLessonIntro();
-  $('lesson-intro-dialog').showModal();
-  $('lesson-intro-start').focus({preventScroll:true});
-}
-function startLessonPractice(){
-  const lesson=currentLesson();
-  if(screen!=='play'||!lesson||!$('lesson-intro-dialog').open)return;
-  if(lessonIntroPage<lessonIntroPages(lesson,wardrobe).length-1){lessonIntroPage++;renderLessonIntro();return;}
-  onboarding.introVersion=TUTORIAL_RULES_VERSION;onboarding.introduced=[...new Set([...onboarding.introduced,lesson.id])];save();
-  $('lesson-intro-dialog').close();
-  const view=lessonView();
-  const target=view.complete?$('lesson-next'):view.action==='mark'?$('mark-mode'):$('board').querySelector(`[data-cell="${view.focusCells[0]}"]`);
-  target?.focus({preventScroll:true});
-}
-function leaveLessonIntro(){
-  if(!$('lesson-intro-dialog').open)return;
-  save();showScreen('home');
+function closeDialogs(){helpPendingStart=null;helpReturnFocus=null;document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());}
+// Every route into a board shares the same introduction. Defer navigation and
+// board changes until it is completed or explicitly skipped.
+function withGameGuide(start){
+  if(onboarding.guideVersion!==GAME_GUIDE_VERSION){openHelp({onStart:start});return;}
+  start();
 }
 function showScreen(next){
+  if(next==='play'&&onboarding.guideVersion!==GAME_GUIDE_VERSION){withGameGuide(()=>showScreen(next));return;}
   closeDialogs();screen=next;document.body.dataset.screen=screen;
   vipTapCount=0;vipLastTap=0;renderVip();
   for(const id of ['home','play','map','album','wardrobe'])$(`${id}-screen`).hidden=id!==screen;
   if(screen==='home')renderHome();
-  if(screen==='play'){render();maybeOpenLessonIntro();}
+  if(screen==='play')render();
   if(screen==='map')renderMap();
   if(screen==='album')renderAlbum();
   if(screen==='wardrobe'){renderWardrobe();requestAnimationFrame(fitWardrobe);}
@@ -5983,11 +6044,13 @@ function renderHome(){
   setText('home-collection',`已收好 ${collectionState(completed).filter(item=>item.earned).length} / ${MEMENTOS.length} 件舞会纪念`);renderSound();
 }
 function beginGame(){
-  if(!currentLesson()&&evaluate(currentLevel(),[...dancers]).solved){
-    const next=LEVELS.findIndex((l,i)=>i>index&&!completed.has(l.id));
-    if(next>=0){index=next;readBoard();}else readBoard({replay:true});
-  }
-  cue('place');showScreen('play');save();
+  withGameGuide(()=>{
+    if(!currentLesson()&&evaluate(currentLevel(),[...dancers]).solved){
+      const next=LEVELS.findIndex((l,i)=>i>index&&!completed.has(l.id));
+      if(next>=0){index=next;readBoard();}else readBoard({replay:true});
+    }
+    cue('place');showScreen('play');save();
+  });
 }
 
 function vipCopy(value){return JSON.parse(JSON.stringify(value));}
@@ -6057,8 +6120,9 @@ function completeVipLevel(){
   if(!answer){setText('vip-panel-note','这场还没安排好，先换一场试试吧。');return;}
   closeDialogs();snapshot();dancers=new Set(answer);marks=new Set();finishChange();
 }
-function chooseLevel(next){save();index=next;readBoard({replay:true});showScreen('play');save();}
-function chooseLesson(step){save();index=0;onboarding.step=step;readBoard();showScreen('play');save();}
+function chooseLevel(next){withGameGuide(()=>{save();index=next;readBoard({replay:true});showScreen('play');save();});}
+function chooseLesson(step){withGameGuide(()=>{save();index=0;onboarding.step=step;readBoard();showScreen('play');save();});}
+function startFormalPlay(){withGameGuide(()=>{onboarding.unlocked=LESSONS.length;chooseLesson(LESSONS.length);});}
 function openMap(){save();mapReturn=screen==='play'?'play':'home';mapChapter=chapterIndex();showScreen('map');}
 function journeyDestination(){
   const levels=chapterLevels(mapChapter);
@@ -6417,17 +6481,34 @@ function reset(){
   dancers=new Set(initial.dancers);marks=new Set(initial.marks);closeDialogs();finishChange({animate:false});
   if(!currentLesson()){statusMessage=changed?'舞池清空啦。误点了可以撤销。':'舞池已经是空的啦。';render();}
 }
-function openHelp({startPractice=false}={}){
-  helpPracticePending=startPractice;
-  setText('help-title',startPractice?'开场前，记住这两条':'怎样才算摆对？');
-  $('help-content').innerHTML=rulesOverviewMarkup(wardrobe);
-  setText('help-start',startPractice?'开始游戏':'明白啦');
-  $('help-dialog').showModal();$('help-content').scrollTop=0;
+function renderHelp(){
+  const page=helpPages[helpPage];
+  setText('help-step',`玩法引导 · ${helpPage+1} / ${helpPages.length}`);
+  setText('help-title',page.title);$('help-content').innerHTML=page.markup;
+  $('help-dialog').dataset.page=String(helpPage);
+  $('help-prev').hidden=helpPage===0;$('help-skip').hidden=!helpPendingStart;
+  setText('help-start',helpPage<helpPages.length-1?'继续':helpPendingStart?'开始游戏':screen==='play'?'回到游戏':'明白啦');
+  $('help-content').scrollTop=0;
 }
-function closeHelp(){helpPracticePending=false;$('help-dialog').close();}
+function openHelp({onStart=null}={}){
+  const opener=document.activeElement;closeDialogs();
+  helpPage=0;helpPages=gameGuidePages(wardrobe);helpPendingStart=onStart;helpReturnFocus=opener;
+  renderHelp();$('help-dialog').showModal();$('help-start').focus({preventScroll:true});
+}
+function closeHelp({restoreFocus=true}={}){
+  const opener=helpReturnFocus;helpPendingStart=null;helpReturnFocus=null;
+  $('help-dialog').close();if(restoreFocus)opener?.focus({preventScroll:true});
+}
+function finishHelp(){
+  if(!$('help-dialog').open)return;
+  const start=helpPendingStart;
+  onboarding.guideVersion=GAME_GUIDE_VERSION;storageWrite();
+  closeHelp({restoreFocus:!start});if(start)start();
+}
 function confirmHelp(){
-  const startPractice=helpPracticePending;closeHelp();
-  if(startPractice){onboarding.unlocked=LESSONS.length;chooseLesson(LESSONS.length);}
+  if(!$('help-dialog').open)return;
+  if(helpPage<helpPages.length-1){helpPage++;renderHelp();$('help-start').focus({preventScroll:true});return;}
+  finishHelp();
 }
 function clearHint(){activeHint=null;hintStage=0;hintSignature='';}
 function boardSignature(){return `${currentLevel().id}|${[...dancers].sort().join(';')}|${[...marks].sort().join(';')}`;}
@@ -6508,18 +6589,17 @@ $('wardrobe-discovery-dialog').addEventListener('close',()=>{if(screen==='map')$
 $('wardrobe-discovery-wear').onclick=()=>{openWardrobe();wardrobeSlot='body';wardrobeTab='accessories';renderWardrobe();const item=$('wardrobe-accessories').querySelector('button[data-accessory="satchel"]');item?.scrollIntoView?.({block:'nearest'});item?.focus({preventScroll:true});};
 $('levels').addEventListener('click',event=>{if(event.target.closest('#tea-parcel')){openTeaParcel();return;}const button=event.target.closest('[data-level]');if(button)chooseLevel(Number(button.dataset.level));});
 $('map-continue').onclick=()=>chooseLevel(journeyDestination().number-1);
-$('lesson-path').addEventListener('click',event=>{const button=event.target.closest('[data-lesson]');if(!button||button.disabled)return;const step=Number(button.dataset.lesson);if(step===LESSONS.length)openHelp({startPractice:true});else chooseLesson(step);});
-$('lesson-skip').onclick=()=>openHelp({startPractice:true});
-$('lesson-next').onclick=()=>{if(!lessonView()?.complete)return;if(onboarding.step===LESSONS.length-1){openHelp({startPractice:true});return;}onboarding.unlocked=Math.max(onboarding.unlocked,onboarding.step+1);chooseLesson(onboarding.step+1);};
-$('lesson-intro-start').onclick=startLessonPractice;$('lesson-intro-home').onclick=leaveLessonIntro;
-$('lesson-intro-prev').onclick=()=>{if(!$('lesson-intro-dialog').open||lessonIntroPage===0)return;lessonIntroPage--;renderLessonIntro();$('lesson-intro-start').focus({preventScroll:true});};
-$('lesson-intro-dialog').addEventListener('cancel',event=>{event.preventDefault();leaveLessonIntro();});
+$('lesson-path').addEventListener('click',event=>{const button=event.target.closest('[data-lesson]');if(!button||button.disabled)return;const step=Number(button.dataset.lesson);if(step===LESSONS.length)startFormalPlay();else chooseLesson(step);});
+$('lesson-skip').onclick=startFormalPlay;
+$('lesson-next').onclick=()=>{if(!lessonView()?.complete)return;if(onboarding.step===LESSONS.length-1){startFormalPlay();return;}onboarding.unlocked=Math.max(onboarding.unlocked,onboarding.step+1);chooseLesson(onboarding.step+1);};
 $('place-mode').onclick=()=>setMode('place');$('mark-mode').onclick=()=>setMode('mark');$('undo').onclick=undo;
 $('pause-open').onclick=()=>{renderSound();$('pause-dialog').showModal();};
 $('pause-close').onclick=()=>$('pause-dialog').close();$('pause-resume').onclick=()=>$('pause-dialog').close();
 $('pause-home').onclick=()=>{save();showScreen('home');};$('reset').onclick=reset;
 $('help-open').onclick=()=>openHelp();$('home-help').onclick=()=>openHelp();$('help-close').onclick=closeHelp;$('help-start').onclick=confirmHelp;
-$('help-dialog').addEventListener('cancel',()=>{helpPracticePending=false;});
+$('help-prev').onclick=()=>{if(!$('help-dialog').open||helpPage===0)return;helpPage--;renderHelp();$('help-start').focus({preventScroll:true});};
+$('help-skip').onclick=()=>{if(helpPendingStart)finishHelp();};
+$('help-dialog').addEventListener('cancel',event=>{event.preventDefault();closeHelp();});
 $('hint-button').onclick=openHint;$('hint-close').onclick=()=>$('hint-dialog').close();$('hint-dismiss').onclick=()=>$('hint-dialog').close();$('hint-more').onclick=moreHint;$('apply-hint').onclick=applyHint;
 $('guest-cast-open').onclick=()=>$('guest-cast-dialog').showModal();
 $('guest-cast-close').onclick=()=>$('guest-cast-dialog').close();$('guest-cast-done').onclick=()=>$('guest-cast-dialog').close();
@@ -6531,20 +6611,20 @@ $('result-album').onclick=()=>{save();albumReturn='map';mapReturn='home';mapChap
 $('result-wardrobe').onclick=()=>{const bunny=freshWardrobeRewards.bunnies[0],accessory=freshWardrobeRewards.accessories[0];if(bunny)openWardrobeReward('bunny',bunny.variant);else if(accessory)openWardrobeReward('accessory',accessory.id);};
 $('win-wardrobe-rewards').addEventListener('click',event=>{const bunny=event.target.closest('[data-reward-bunny]');if(bunny){openWardrobeReward('bunny',bunny.dataset.rewardBunny);return;}const accessory=event.target.closest('[data-reward-accessory]');if(accessory)openWardrobeReward('accessory',accessory.dataset.rewardAccessory);});
 document.addEventListener('keydown',event=>{
-  if($('lesson-intro-dialog').open){if(event.key==='Escape'){event.preventDefault();leaveLessonIntro();}return;}
-  if($('help-dialog').open&&event.key==='Escape')helpPracticePending=false;
+  if($('help-dialog').open&&event.key==='Escape'){event.preventDefault();closeHelp();return;}
   if(screen!=='play'||document.querySelector('dialog[open]')||event.altKey||event.target.closest('input,textarea,select'))return;
   if(event.key==='Escape'){event.preventDefault();$('pause-open').click();}
   if(event.key.toLowerCase()==='m'&&!event.ctrlKey&&!event.metaKey)setMode(mode==='place'?'mark':'place');
   if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='z'){event.preventDefault();undo();}
 });
-for(const [id,icon]of Object.entries({'pause-open':'pause','help-open':'help','map-back':'home','album-back':'arrow','wardrobe-back':'arrow','pause-close':'close','help-close':'close','hint-close':'close','guest-cast-close':'close','memento-close':'close','wardrobe-detail-close':'close','wardrobe-discovery-close':'close'}))$(id).innerHTML=gameIcon(icon);
+for(const [id,icon]of Object.entries({'pause-open':'pause','map-back':'home','album-back':'arrow','wardrobe-back':'arrow','pause-close':'close','help-close':'close','hint-close':'close','guest-cast-close':'close','memento-close':'close','wardrobe-detail-close':'close','wardrobe-discovery-close':'close'}))$(id).innerHTML=gameIcon(icon);
+$('help-open').querySelector('.icon').innerHTML=gameIcon('help');
 for(const id of ['vip-code-close','vip-panel-close'])$(id).innerHTML=gameIcon('close');
 for(const [id,icon]of Object.entries({'open-map':'map','open-album':'album','home-help':'help','place-mode':'bunny','mark-mode':'mark','undo':'undo','hint-button':'hint'}))$(id).querySelector('.icon').innerHTML=gameIcon(icon);
 $('open-wardrobe').querySelector('.icon').innerHTML=gameIcon('wardrobe');
 $('wardrobe-tab-bunnies').querySelector('.icon').innerHTML=gameIcon('bunny');$('wardrobe-tab-accessories').querySelector('.icon').innerHTML=gameIcon('wardrobe');
 $('wardrobe-room-art').innerHTML=wardrobeRoomSvg().replace('<svg','<svg width="560" height="550"');
-$('coach-bunny').innerHTML=hostOwlSvg();$('hint-host-art').innerHTML=hostOwlSvg();$('lesson-intro-owl').innerHTML=hostOwlSvg();saveWardrobe();
+$('coach-bunny').innerHTML=hostOwlSvg();$('hint-host-art').innerHTML=hostOwlSvg();$('help-owl').innerHTML=hostOwlSvg();saveWardrobe();
 readBoard();renderHome();renderSound();renderVip();
 new ResizeObserver(fitBoard).observe($('board-area'));new ResizeObserver(fitWardrobe).observe($('wardrobe-dressing'));window.addEventListener('resize',()=>{fitBoard();fitWardrobe();requestAnimationFrame(keepJourneyInView);});
 
