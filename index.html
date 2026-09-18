@@ -5910,6 +5910,20 @@ function wearWardrobeAccessory(id){
   outfits[wardrobePreviewVariant]={...wardrobeOutfit(wardrobe,wardrobePreviewVariant),[wardrobeSlot]:id};
   wardrobe={...wardrobe,outfits};saveWardrobe();
 }
+function wardrobePreviewCanJoin(){
+  if(wardrobeTab!=='accessories'||wardrobe.variants.includes(wardrobePreviewVariant))return false;
+  if(!bunnyState(completed,wardrobe).some(item=>item.variant===wardrobePreviewVariant&&item.unlocked))return false;
+  const available=new Set(accessoryState(completed,wardrobe).filter(item=>item.unlocked).map(item=>item.id));
+  return Object.values(wardrobePreviewOutfit).every(id=>available.has(id));
+}
+function finishWardrobe(){
+  if(screen!=='wardrobe')return;
+  if(wardrobePreviewCanJoin()){
+    wardrobe={...wardrobe,variants:[...wardrobe.variants,wardrobePreviewVariant]};
+    saveWardrobe();
+  }
+  showScreen(wardrobeReturn);
+}
 function renderWardrobe(){
   const accessories=accessoryState(completed,wardrobe),previewId=wardrobePreviewOutfit[wardrobeSlot];
   const trying=accessories.filter(item=>!item.unlocked&&Object.values(wardrobePreviewOutfit).includes(item.id));
@@ -5933,9 +5947,9 @@ function renderWardrobe(){
   $('wardrobe-accessories').innerHTML=choices.map(item=>`<div class="accessory-card"><button class="accessory-choice ${item.unlocked?'unlocked':'locked'} ${previewId===item.id&&!item.unlocked?'trying':''} ${equippedId===item.id?'equipped':''}" type="button" data-accessory="${item.id}" aria-pressed="${previewId===item.id}" aria-label="${item.title}，${item.unlocked?'可穿戴':`${item.hidden?`小惊喜：${item.clue}`:item.condition}，可试戴`}"><span class="accessory-picture" aria-hidden="true">${item.id==='none'&&wardrobeSlot==='head'?emptyHeadIcon:accessorySvg(item.id)}</span><span class="accessory-copy"><strong>${item.title}</strong><small>${item.unlocked?equippedId===item.id?'正在穿戴':item.discovered?'已发现小故事':'可穿戴':item.shortCondition}</small>${item.unlocked?'':`<small class="accessory-progress">${item.progressLabel}</small>`}</span>${!item.unlocked?`<span class="accessory-lock" aria-hidden="true">${lock}</span>${previewId===item.id?'<span class="accessory-tag">试戴</span>':''}`:equippedId===item.id?`<span class="accessory-equipped" aria-hidden="true">${gameIcon('check')}</span>`:''}</button>${item.id!=='none'?`<button class="wardrobe-item-info" type="button" data-info-accessory="${item.id}" aria-label="了解${item.title}的来历"><span aria-hidden="true">?</span></button>`:''}</div>`).join('');
   renderWardrobeTabs();
   const tryItem=trying.find(item=>item.id===previewId)||trying[0];
-  setText('wardrobe-status',wardrobeNotice||(!target.unlocked?`${target.condition}，${targetName}就会收到邀请。${target.progressLabel}`:!wardrobeStorageOk?'装扮暂时无法保存，保持页面打开仍可穿戴。':tryItem?`${tryItem.hidden?tryItem.clue:`${tryItem.condition}。`}点小问号看看，试戴不会替换已保存的装扮。`:wardrobe.variants.includes(wardrobePreviewVariant)?`${targetName}穿好啦，去赴约吧。`:`${targetName}换好装啦，选「赴约」就能出场。`));
+  setText('wardrobe-status',wardrobeNotice||(!target.unlocked?`${target.condition}，${targetName}就会收到邀请。${target.progressLabel}`:!wardrobeStorageOk?'装扮暂时无法保存，保持页面打开仍可穿戴。':tryItem?`${tryItem.hidden?tryItem.clue:`${tryItem.condition}。`}点小问号看看，试戴不会替换已保存的装扮。`:wardrobe.variants.includes(wardrobePreviewVariant)?`${targetName}穿好啦，去赴约吧。`:wardrobeTab==='accessories'?`${targetName}换好装啦，一起去赴约吧。`:`${targetName}先歇一会儿，装扮替它收好啦。`));
   $('wardrobe-done').disabled=false;
-  setText('wardrobe-done',wardrobeReturn==='map'?'回舞会地图 →':!target.unlocked?'先回舞会 →':trying.length?'穿已保存的 →':wardrobeReturn==='play'?'回舞池看看 →':'穿好啦 →');
+  setText('wardrobe-done',wardrobePreviewCanJoin()?'穿好去赴约 →':wardrobeReturn==='map'?'回舞会地图 →':!target.unlocked?'先回舞会 →':trying.length?'穿已保存的 →':wardrobeReturn==='play'?'回舞池看看 →':'穿好啦 →');
 }
 function renderWardrobeTabs(){
   for(const tab of ['bunnies','accessories']){
@@ -6227,7 +6241,7 @@ $('mementos').addEventListener('click',event=>{const button=event.target.closest
 $('memento-close').onclick=()=>$('memento-dialog').close();$('memento-done').onclick=()=>$('memento-dialog').close();
 $('memento-wear').onclick=()=>openWardrobe($('memento-wear').dataset.accessory);
 $('open-wardrobe').onclick=()=>openWardrobe();$('pause-wardrobe').onclick=()=>openWardrobe();
-$('wardrobe-back').onclick=()=>showScreen(wardrobeReturn);$('wardrobe-done').onclick=()=>showScreen(wardrobeReturn);
+$('wardrobe-back').onclick=()=>showScreen(wardrobeReturn);$('wardrobe-done').onclick=finishWardrobe;
 $('wardrobe-tab-bunnies').onclick=()=>setWardrobeTab('bunnies');$('wardrobe-tab-accessories').onclick=()=>setWardrobeTab('accessories');
 $('wardrobe-tabs').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();setWardrobeTab(event.key==='Home'?'bunnies':event.key==='End'?'accessories':wardrobeTab==='bunnies'?'accessories':'bunnies');$(`wardrobe-tab-${wardrobeTab}`).focus();});
 $('wardrobe-slot-head').onclick=()=>setWardrobeSlot('head');$('wardrobe-slot-body').onclick=()=>setWardrobeSlot('body');
